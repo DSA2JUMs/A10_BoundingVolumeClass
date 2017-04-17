@@ -7,8 +7,13 @@ class BoundingObjectManagerSingleton
 	// The single instance of the BoundingObjectManagerSingleton
 	static BoundingObjectManagerSingleton* instance;
 
+	// List of objects the singleton creates and has control over
+	static std::vector<MyBoundingObjectClass> objectList;
+
 	// Basic constructor
-	BoundingObjectManagerSingleton();
+	BoundingObjectManagerSingleton() {
+		objectList = std::vector<MyBoundingObjectClass>();
+	};
 
 	// Copy constructor
 	BoundingObjectManagerSingleton(BoundingObjectManagerSingleton const& other) {
@@ -41,6 +46,20 @@ public:
 		}
 	};
 
+	// Used to create new Bounding Objects from a list of vertices
+	void CreateBoundingObject(std::vector<vector3> vertexList) {
+		objectList.push_back(MyBoundingObjectClass(vertexList));
+	};
+
+	void CheckCollisions() {
+		for (int i = 0; i < objectList.size; i++) {
+			for (int j = i; j < objectList.size; j++) {
+				if (objectList[i].IsColliding(&objectList[j])) {
+
+				}
+			}
+		}
+	};
 
 };
 // Necessary for setting the instance as a nullptr to begin with
