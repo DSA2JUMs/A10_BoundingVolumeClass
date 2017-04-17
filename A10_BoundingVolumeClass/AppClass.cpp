@@ -15,6 +15,10 @@ void AppClass::InitVariables(void)
 	m_pMeshMngr->LoadModel("Minecraft\\Zombie.obj", "Zombie");
 	m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
 	m_pMeshMngr->LoadModel("Minecraft\\Cow.obj", "Cow");
+
+	// Get the instance of the BoundingObjectManagerSingleton
+	m_bObjManager = BoundingObjectManagerSingleton::GetInstance();
+
 	//creating bounding spheres for both models
 	m_pBB0 = new MyBoundingObjectClass(m_pMeshMngr->GetVertexList("Zombie"));
 
