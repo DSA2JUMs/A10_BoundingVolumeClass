@@ -38,10 +38,10 @@
     <ClInclude Include="..\res\Resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyBoundingObjectClass.h">
+    <ClInclude Include="BoundingObjectManagerSingleton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BoundingObjectManagerSingleton.h">
+    <ClInclude Include="MyBoundingObjectClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -16,13 +16,13 @@ void AppClass::InitVariables(void)
 	m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
 	m_pMeshMngr->LoadModel("Minecraft\\Cow.obj", "Cow");
 	//creating bounding spheres for both models
-	m_pBB0 = new MyBoundingBoxClass(m_pMeshMngr->GetVertexList("Zombie"));
+	m_pBB0 = new MyBoundingObjectClass(m_pMeshMngr->GetVertexList("Zombie"));
 
 
 	matrix4 m4Translation = glm::translate(vector3(3.0, 0.0, 0.0));
 
-	m_pBB1 = new MyBoundingBoxClass(m_pMeshMngr->GetVertexList("Steve"));
-	m_pBB2 = new MyBoundingBoxClass(m_pMeshMngr->GetVertexList("Cow"));
+	m_pBB1 = new MyBoundingObjectClass(m_pMeshMngr->GetVertexList("Steve"));
+	m_pBB2 = new MyBoundingObjectClass(m_pMeshMngr->GetVertexList("Cow"));
 
 	matrix4 m4Position = glm::translate(vector3(3.0, 0.0, 0.0));
 	m_pMeshMngr->SetModelMatrix(m4Position, "Steve");
@@ -61,15 +61,15 @@ void AppClass::Update(void)
 	matrix4 m4Transform = glm::translate(m_v3Position) * ToMatrix4(m_qArcBall);
 	m_pMeshMngr->SetModelMatrix(m4Transform, "Zombie"); //set the matrix to the model
 	m_pBB0->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Zombie"));
-	m_pBB0->RenderBox(m_v3Position);//render the bounding sphere
+	m_pBB0->RenderBox();//render the bounding sphere
 		
 	
 	m_pMeshMngr->SetModelMatrix(mTranslation, "Steve");
 	m_pBB1->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Steve"));
-	m_pBB1->RenderBox(vector3(0, 0, 0));
+	m_pBB1->RenderBox();
 
 	m_pBB2->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Cow"));
-	m_pBB2->RenderBox(vector3(0, 0, 0));
+	m_pBB2->RenderBox();
 
 	m_pBB0->SetColliding(false);
 	m_pBB1->SetColliding(false);
