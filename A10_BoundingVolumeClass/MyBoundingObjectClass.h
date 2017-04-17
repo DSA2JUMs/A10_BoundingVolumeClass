@@ -52,8 +52,8 @@ private:
 	vector3 m_v3MinG;
 	vector3 m_v3SizeG;
 
-	vector3 m_v3MaxLargest;
-	vector3 m_v3MinLargest;
-	vector3 m_v3SizeLargest;
+	vector3 m_v3MaxSurrounding;
+	vector3 m_v3MinSurrounding;
+	vector3 m_v3SurroundingSize;
 };
 
