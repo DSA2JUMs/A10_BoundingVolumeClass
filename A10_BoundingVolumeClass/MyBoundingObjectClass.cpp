@@ -50,10 +50,10 @@ MyBoundingObjectClass::MyBoundingObjectClass(std::vector<vector3> vertexList)
 	m_v3MaxG = m_v3Max;
 	m_v3MinG = m_v3Min;
 
-	m_v3MaxLargest = m_v3Max;
-	m_v3MinLargest = m_v3Min;
+	m_v3MaxSurrounding = m_v3Max;
+	m_v3MinSurrounding = m_v3Min;
 
-	m_v3SizeLargest = m_v3MaxLargest - m_v3MinLargest;
+	m_v3SurroundingSize = m_v3MaxSurrounding - m_v3MinSurrounding;
 }
 
 void MyBoundingObjectClass::SetModelMatrix(matrix4 a_m4ToWorld)
@@ -88,40 +88,40 @@ void MyBoundingObjectClass::SetModelMatrix(matrix4 a_m4ToWorld)
 	}
 
 	//set minLargest and maxLargest to the first point
-	m_v3MaxLargest = vectorList[0];
-	m_v3MinLargest = m_v3MaxLargest;
+	m_v3MaxSurrounding = vectorList[0];
+	m_v3MinSurrounding = m_v3MaxSurrounding;
 
 	for (int i = 1; i < 8; i++)
 	{
-		if (m_v3MinLargest.x > vectorList[i].x)
+		if (m_v3MinSurrounding.x > vectorList[i].x)
 		{
-			m_v3MinLargest.x = vectorList[i].x;
+			m_v3MinSurrounding.x = vectorList[i].x;
 		}
-		else if (m_v3MaxLargest.x < vectorList[i].x)
+		else if (m_v3MaxSurrounding.x < vectorList[i].x)
 		{
-			m_v3MaxLargest.x = vectorList[i].x;
-		}
-
-		if (m_v3MinLargest.y > vectorList[i].y)
-		{
-			m_v3MinLargest.y = vectorList[i].y;
-		}
-		else if (m_v3MaxLargest.y < vectorList[i].y)
-		{
-			m_v3MaxLargest.y = vectorList[i].y;
+			m_v3MaxSurrounding.x = vectorList[i].x;
 		}
 
-		if (m_v3MinLargest.z > vectorList[i].z)
+		if (m_v3MinSurrounding.y > vectorList[i].y)
 		{
-			m_v3MinLargest.z = vectorList[i].z;
+			m_v3MinSurrounding.y = vectorList[i].y;
 		}
-		else if (m_v3MaxLargest.z < vectorList[i].z)
+		else if (m_v3MaxSurrounding.y < vectorList[i].y)
 		{
-			m_v3MaxLargest.z = vectorList[i].z;
+			m_v3MaxSurrounding.y = vectorList[i].y;
+		}
+
+		if (m_v3MinSurrounding.z > vectorList[i].z)
+		{
+			m_v3MinSurrounding.z = vectorList[i].z;
+		}
+		else if (m_v3MaxSurrounding.z < vectorList[i].z)
+		{
+			m_v3MaxSurrounding.z = vectorList[i].z;
 		}
 	}
 
-	m_v3SizeLargest = m_v3MaxLargest - m_v3MinLargest;
+	m_v3SurroundingSize = m_v3MaxSurrounding - m_v3MinSurrounding;
 
 }
 
@@ -155,7 +155,7 @@ void MyBoundingObjectClass::RenderBox()
 	// All-encompassing cube
 	m_pMeshMngr->AddCubeToRenderList(
 		glm::translate(m_v3CenterGlobal) *
-		glm::scale(m_v3SizeLargest),
+		glm::scale(m_v3SurroundingSize),
 		REBLUE, WIRE);
 }
 
