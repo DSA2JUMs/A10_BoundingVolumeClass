@@ -78,6 +78,10 @@ void AppClass::ProcessKeyboard(void)
 			m_pBB0->SetModelMatrix(glm::translate(m_v3Position));
 		}
 	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::V)) {
+		//turn on and off visibility
+	}
 #pragma endregion
 
 #pragma region Other Actions

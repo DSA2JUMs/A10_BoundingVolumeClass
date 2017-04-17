@@ -5,7 +5,6 @@ class MyBoundingObjectClass
 {
 public:
 	//has functions and varibles to create sphere and or box collision
-	MyBoundingObjectClass();
 	~MyBoundingObjectClass();
 
 	MyBoundingObjectClass(std::vector<vector3> vertexList); //Constructor, needs a vertex list
@@ -26,7 +25,7 @@ public:
 	void SetRadius(float input); //Gets radius of the sphere
 
 	void RenderSphere();
-	void RenderBox(vector3 pos); //Renders the box based on the center in global space
+	void RenderBox(); //Renders the box based on the center in global space
 
 	bool IsColliding(MyBoundingObjectClass* a_other); //Will check the collision with another object
 	bool CheckBoxCollision(MyBoundingObjectClass* a_other);
@@ -37,7 +36,7 @@ public:
 
 
 private:
-	bool m_bvisible; //turn off/on bounding obj 
+	bool m_bVisible = true; //turn off/on bounding obj 
 	bool m_bColliding = false;
 	vector3 m_v3CenterLocal = vector3(0.0f); //center  in local space
 	vector3 m_v3CenterGlobal = vector3(0.0f); //center  in global space
@@ -52,5 +51,9 @@ private:
 	vector3 m_v3MaxG;
 	vector3 m_v3MinG;
 	vector3 m_v3SizeG;
+
+	vector3 m_v3MaxLargest;
+	vector3 m_v3MinLargest;
+	vector3 m_v3SizeLargest;
 };
 
