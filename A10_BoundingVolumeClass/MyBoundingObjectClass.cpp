@@ -122,7 +122,18 @@ void MyBoundingObjectClass::SetModelMatrix(matrix4 a_m4ToWorld)
 	}
 
 	m_v3SurroundingSize = m_v3MaxSurrounding - m_v3MinSurrounding;
-
+	if (m_fRadius < m_v3SurroundingSize.x)
+	{
+		m_fRadius = m_v3SurroundingSize.x;
+	}
+	if (m_fRadius < m_v3SurroundingSize.y)
+	{
+		m_fRadius = m_v3SurroundingSize.y;
+	}
+	if (m_fRadius < m_v3SurroundingSize.z)
+	{
+		m_fRadius = m_v3SurroundingSize.z;
+	}
 }
 
 
@@ -140,7 +151,7 @@ void MyBoundingObjectClass::RenderSphere()
 
 	m_pMeshMngr->AddSphereToRenderList(
 		glm::translate(m_v3CenterGlobal) *
-		glm::scale(vector3(m_fRadius) * 2.0f), v3Color, value);
+		glm::scale(vector3(m_fRadius/2) * 2.0f), v3Color, value);
 }
 
 void MyBoundingObjectClass::RenderBox()
@@ -152,9 +163,7 @@ void MyBoundingObjectClass::RenderBox()
 		value = 2; //WIRE
 	}
 
-	if (GetAABBVisibility()) {
-		value = 2; //WIRE
-	}
+
 
 	if (true == m_bColliding)
 		v3Color = RERED;
@@ -165,12 +174,14 @@ void MyBoundingObjectClass::RenderBox()
 		glm::translate(m_v3CenterLocal) *
 		glm::scale(m_v3Size),
 		v3Color, value);
-
-	// All-encompassing cube
-	m_pMeshMngr->AddCubeToRenderList(
-		glm::translate(m_v3CenterGlobal) *
-		glm::scale(m_v3SurroundingSize),
-		REBLUE, value);
+	if (GetAABBVisibility())
+	{
+		// All-encompassing cube
+		m_pMeshMngr->AddCubeToRenderList(
+			glm::translate(m_v3CenterGlobal) *
+			glm::scale(m_v3SurroundingSize),
+			REBLUE, value);
+	}
 }
 
 bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass * a_other)
@@ -210,8 +221,8 @@ bool MyBoundingObjectClass::CheckBoxCollision(MyBoundingObjectClass* a_other)
 
 bool MyBoundingObjectClass::CheckSphereCollision(MyBoundingObjectClass* a_other)
 {
-	float fDistance = glm::distance(this->m_v3CenterGlobal, a_other->m_v3CenterGlobal);
-	float fRadiiSum = this->m_fRadius + a_other->m_fRadius;
+	float fDistance = glm::distance(m_v3CenterGlobal, a_other->m_v3CenterGlobal);
+	float fRadiiSum = m_fRadius + a_other->m_fRadius;
 	//return t/f
 	return fDistance < fRadiiSum;
 

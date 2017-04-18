@@ -45,24 +45,24 @@ void AppClass::ProcessKeyboard(void)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		m_v3Position += vector3(-0.1f, 0.0f, 0.0f);
-		m_pBB0->SetModelMatrix(glm::translate(m_v3Position));
+		m_bObjManager->objectList[0].SetModelMatrix(glm::translate(m_v3Position));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		m_v3Position += vector3(0.1f, 0.0f, 0.0f);
-		m_pBB0->SetModelMatrix(glm::translate(m_v3Position));
+		m_bObjManager->objectList[0].SetModelMatrix(glm::translate(m_v3Position));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		if (!bModifier)
 		{
 			m_v3Position += vector3(0.0f, 0.1f, 0.0f);
-			m_pBB0->SetModelMatrix(glm::translate(m_v3Position));
+			m_bObjManager->objectList[0].SetModelMatrix(glm::translate(m_v3Position));
 		}
 		else
 		{
 			m_v3Position += vector3(0.0f, 0.0f,-0.1f);
-			m_pBB0->SetModelMatrix(glm::translate(m_v3Position));
+			m_bObjManager->objectList[0].SetModelMatrix(glm::translate(m_v3Position));
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -70,12 +70,12 @@ void AppClass::ProcessKeyboard(void)
 		if (!bModifier)
 		{
 			m_v3Position += vector3(0.0f, -0.1f, 0.0f);
-			m_pBB0->SetModelMatrix(glm::translate(m_v3Position));
+			m_bObjManager->objectList[0].SetModelMatrix(glm::translate(m_v3Position));
 		}
 		else
 		{
 			m_v3Position += vector3(0.0f, 0.0f, 0.1f);
-			m_pBB0->SetModelMatrix(glm::translate(m_v3Position));
+			m_bObjManager->objectList[0].SetModelMatrix(glm::translate(m_v3Position));
 		}
 	}
 

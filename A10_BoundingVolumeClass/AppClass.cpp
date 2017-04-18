@@ -24,18 +24,19 @@ void AppClass::InitVariables(void)
 	m_bObjManager = BoundingObjectManagerSingleton::GetInstance();
 
 	//creating bounding spheres for both models
-	m_pBB0 = new MyBoundingObjectClass(m_pMeshMngr->GetVertexList("Zombie"));
+	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Zombie"));
 
 	matrix4 m4Translation = glm::translate(vector3(3.0, 0.0, 0.0));
 
-	m_pBB1 = new MyBoundingObjectClass(m_pMeshMngr->GetVertexList("Steve"));
-	m_pBB2 = new MyBoundingObjectClass(m_pMeshMngr->GetVertexList("Cow"));
+	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Steve"));
+	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Cow"));
 
 	matrix4 m4Position = glm::translate(vector3(3.0, 0.0, 0.0));
 	m_pMeshMngr->SetModelMatrix(m4Position, "Steve");
 
 	matrix4 m4Position2 = glm::translate(vector3(2.5, 2.0, 0.0));
 	m_pMeshMngr->SetModelMatrix(m4Position2, "Cow");
+	m_bObjManager->SetColor(REBLUE);
 }
 
 void AppClass::Update(void)
@@ -66,20 +67,19 @@ void AppClass::Update(void)
 
 	//set the translate to create the transform matrix
 	matrix4 m4Transform = glm::translate(m_v3Position) * ToMatrix4(m_qArcBall);
-	m_pMeshMngr->SetModelMatrix(m4Transform, "Zombie"); //set the matrix to the model
 
-	
-	m_pBB0->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Zombie"));
-	m_pBB0->RenderBox();//render the bounding sphere
+
+	m_pMeshMngr->SetModelMatrix(m4Transform, "Zombie"); //set the matrix to the model
+	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Zombie"),0);
 		
 	
 	m_pMeshMngr->SetModelMatrix(mTranslation, "Steve");
-	m_pBB1->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Steve"));
-	m_pBB1->RenderBox();
+	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Steve"), 1);
 
-	m_pBB2->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Cow"));
-	m_pBB2->RenderBox();
-
+	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Cow"), 2);
+	m_bObjManager->RenderBoundingObject();
+	 
+	/*
 	m_pBB0->SetColliding(false);
 	m_pBB1->SetColliding(false);
 	m_pBB2->SetColliding(false);
@@ -99,7 +99,8 @@ void AppClass::Update(void)
 		m_pBB1->SetColliding(true);
 		m_pBB2->SetColliding(true);
 	}
-	
+	*/
+	m_bObjManager->CheckCollisions();
 
 	if (fPercentage > 1.0f)
 	{
@@ -120,11 +121,11 @@ void AppClass::Update(void)
 	m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), REYELLOW);
 
 	m_pMeshMngr->Print("Center: (");
-	m_pMeshMngr->Print(std::to_string(m_pBB0->GetCenterGlobal().x), RERED);
+	m_pMeshMngr->Print(std::to_string(m_bObjManager->objectList[0].GetCenterGlobal().x), RERED);
 	m_pMeshMngr->Print(" , ");
-	m_pMeshMngr->Print(std::to_string(m_pBB0->GetCenterGlobal().y), RERED);
+	m_pMeshMngr->Print(std::to_string(m_bObjManager->objectList[0].GetCenterGlobal().y), RERED);
 	m_pMeshMngr->Print(" , ");
-	m_pMeshMngr->Print(std::to_string(m_pBB0->GetCenterGlobal().z), RERED);
+	m_pMeshMngr->Print(std::to_string(m_bObjManager->objectList[0].GetCenterGlobal().z), RERED);
 	m_pMeshMngr->PrintLine(")");
 
 	m_pMeshMngr->Print("FPS:");

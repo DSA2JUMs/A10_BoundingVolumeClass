@@ -6,10 +6,10 @@ class BoundingObjectManagerSingleton
 {
 	// The single instance of the BoundingObjectManagerSingleton
 	static BoundingObjectManagerSingleton* instance;
-
+	public:
 	// List of objects the singleton creates and has control over
 	std::vector<MyBoundingObjectClass> objectList;
-
+private:
 	// Basic constructor
 	BoundingObjectManagerSingleton(void) {
 		objectList = std::vector<MyBoundingObjectClass>();
@@ -23,10 +23,10 @@ class BoundingObjectManagerSingleton
 	// Copy assignment
 	BoundingObjectManagerSingleton& operator=(BoundingObjectManagerSingleton const& other) {
 		instance = other.GetInstance();
-	}
+	};
 
 	// Basic destructor
-	~BoundingObjectManagerSingleton();
+	~BoundingObjectManagerSingleton() {};
 
 public:
 	// Returns the single instance of BoundingObjectManagerSingleton
@@ -66,6 +66,10 @@ public:
 		}
 	};
 
+	void SetModelMatrix(matrix4 model, int value) {
+		objectList[value].SetModelMatrix(model);
+	};
+
 	//change visibilty of AABB all the objetcs in list
 	void SetAABBVisibility(bool value) {
 		for (int i = 0; i < objectList.size(); i++) {
@@ -86,9 +90,11 @@ public:
 		}
 		for (int i = 0; i < objectList.size(); i++) {
 			for (int j = i; j < objectList.size(); j++) {
-				if (objectList[i].IsColliding(&objectList[j])) {
-					objectList[i].SetColliding(true);
-					objectList[j].SetColliding(true);
+				if (i != j) {
+					if (objectList[i].IsColliding(&objectList[j])) {
+						objectList[i].SetColliding(true);
+						objectList[j].SetColliding(true);
+					}
 				}
 			}
 		}
