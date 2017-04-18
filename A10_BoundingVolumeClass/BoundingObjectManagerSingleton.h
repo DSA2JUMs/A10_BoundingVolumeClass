@@ -51,6 +51,14 @@ public:
 		objectList.push_back(MyBoundingObjectClass(vertexList));
 	};
 
+	//render any specific BO or all of them
+	void RenderBoundingObject(){
+		for (int i = 0; i < objectList.size(); i++) {
+			objectList[i].RenderSphere();
+			objectList[i].RenderBox();
+		}
+	}
+
 	//change visibilty of all the objetcs in list
 	void SetGeneralVisibility(bool value) {
 		for (int i = 0; i < objectList.size(); i++) {

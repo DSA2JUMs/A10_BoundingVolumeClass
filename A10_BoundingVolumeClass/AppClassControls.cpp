@@ -80,8 +80,27 @@ void AppClass::ProcessKeyboard(void)
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::V)) {
-		//turn on and off visibility
+		if (!bModifier)
+		{
+			//turn on and off visibility
+			m_bObjManager->SetGeneralVisibility(false);
+		}
+		else {
+			m_bObjManager->SetGeneralVisibility(true);
+		}
 	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
+		if (!bModifier)
+		{
+			//turn on and off visibility
+			m_bObjManager->SetAABBVisibility(false);
+		}
+		else {
+			m_bObjManager->SetAABBVisibility(true);
+		}
+	}
+
 #pragma endregion
 
 #pragma region Other Actions

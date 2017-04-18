@@ -227,12 +227,12 @@ bool MyBoundingObjectClass::GetGeneralVisibility(void) { return m_bVisible; }
 void MyBoundingObjectClass::SetAABBVisibility(bool value) { m_bVisible = value; }
 bool MyBoundingObjectClass::GetAABBVisibility(void) { return m_bVisible; }
 void MyBoundingObjectClass::SetColliding(bool input) { m_bColliding = input; }
+bool MyBoundingObjectClass::GetColliding(void) { return m_bColliding; }
 void MyBoundingObjectClass::SetCenterLocal(vector3 input) { m_v3CenterLocal = input; }
 void MyBoundingObjectClass::SetCenterGlobal(vector3 input) { m_v3CenterGlobal = input; }
-void MyBoundingObjectClass::SetRadius(float input) { m_fRadius = input; }
-bool MyBoundingObjectClass::GetColliding(void) { return m_bColliding; }
 vector3 MyBoundingObjectClass::GetCenterLocal(void) { return m_v3CenterLocal; }
 vector3 MyBoundingObjectClass::GetCenterGlobal(void) { return m_v3CenterGlobal; }
+void MyBoundingObjectClass::SetRadius(float input) { m_fRadius = input; }
 float MyBoundingObjectClass::GetRadius(void) { return m_fRadius; }
 matrix4 MyBoundingObjectClass::GetModelMatrix(void) { return m_m4ToWorld; }
 
