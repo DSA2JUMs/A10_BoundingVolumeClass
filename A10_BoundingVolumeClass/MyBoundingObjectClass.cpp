@@ -128,19 +128,29 @@ void MyBoundingObjectClass::SetModelMatrix(matrix4 a_m4ToWorld)
 
 void MyBoundingObjectClass::RenderSphere()
 {
-	vector3 v3Color = REGREEN;
+	vector3 v3Color = GetColor();
+	int value = 0; //NONE
+
+	if (GetVisibility()) {
+		value = 2; //WIRE
+	}
+
 	if (true == m_bColliding)
 		v3Color = RERED;
 
 	m_pMeshMngr->AddSphereToRenderList(
 		glm::translate(m_v3CenterGlobal) *
-		glm::scale(vector3(m_fRadius) * 2.0f), v3Color, WIRE);
+		glm::scale(vector3(m_fRadius) * 2.0f), v3Color, value);
 }
 
 void MyBoundingObjectClass::RenderBox()
 {
+	vector3 v3Color = GetColor();
+	int value = 0; //NONE
 
-	vector3 v3Color = REGREEN;
+	if (GetVisibility()) {
+		value = 2; //WIRE
+	}
 
 	if (true == m_bColliding)
 		v3Color = RERED;
@@ -150,13 +160,13 @@ void MyBoundingObjectClass::RenderBox()
 		m_m4ToWorld *
 		glm::translate(m_v3CenterLocal) *
 		glm::scale(m_v3Size),
-		v3Color, WIRE);
+		v3Color, value);
 
 	// All-encompassing cube
 	m_pMeshMngr->AddCubeToRenderList(
 		glm::translate(m_v3CenterGlobal) *
 		glm::scale(m_v3SurroundingSize),
-		REBLUE, WIRE);
+		REBLUE, value);
 }
 
 bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass * a_other)
@@ -206,7 +216,10 @@ bool MyBoundingObjectClass::CheckSphereCollision(MyBoundingObjectClass* a_other)
 }
 
 //properties
+void MyBoundingObjectClass::SetColor(vector3 color) { objColor = color; }
+vector3 MyBoundingObjectClass::GetColor(void) { return objColor; }
 void MyBoundingObjectClass::SetVisibility(bool value){ m_bVisible = value;}
+bool MyBoundingObjectClass::GetVisibility(void) { return m_bVisible; }
 void MyBoundingObjectClass::SetColliding(bool input) { m_bColliding = input; }
 void MyBoundingObjectClass::SetCenterLocal(vector3 input) { m_v3CenterLocal = input; }
 void MyBoundingObjectClass::SetCenterGlobal(vector3 input) { m_v3CenterGlobal = input; }

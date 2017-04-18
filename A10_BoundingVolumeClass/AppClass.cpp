@@ -26,7 +26,6 @@ void AppClass::InitVariables(void)
 	//creating bounding spheres for both models
 	m_pBB0 = new MyBoundingObjectClass(m_pMeshMngr->GetVertexList("Zombie"));
 
-
 	matrix4 m4Translation = glm::translate(vector3(3.0, 0.0, 0.0));
 
 	m_pBB1 = new MyBoundingObjectClass(m_pMeshMngr->GetVertexList("Steve"));
@@ -68,6 +67,8 @@ void AppClass::Update(void)
 	//set the translate to create the transform matrix
 	matrix4 m4Transform = glm::translate(m_v3Position) * ToMatrix4(m_qArcBall);
 	m_pMeshMngr->SetModelMatrix(m4Transform, "Zombie"); //set the matrix to the model
+
+	
 	m_pBB0->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Zombie"));
 	m_pBB0->RenderBox();//render the bounding sphere
 		

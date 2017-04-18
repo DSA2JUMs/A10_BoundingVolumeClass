@@ -51,6 +51,19 @@ public:
 		objectList.push_back(MyBoundingObjectClass(vertexList));
 	};
 
+	//change visibilty of all the objetcs in list
+	void SetVisibility(bool value) {
+		for (int i = 0; i < objectList.size(); i++) {
+			objectList[i].SetColliding(value);
+		}
+	};
+
+	void SetColor(vector3 color) {
+		for (int i = 0; i < objectList.size(); i++) {
+			objectList[i].SetColor(color);
+		}
+	};
+
 	// Loops through the objectList and checks for collisions
 	void CheckCollisions() {
 		for (int i = 0; i < objectList.size(); i++) {
@@ -65,6 +78,12 @@ public:
 			}
 		}
 	};
+
+	//returns the amount of objects in list
+	int GetObjectCount() {
+		return objectList.size();
+	}
+
 
 	void UpdatePositions(matrix4 mat, int i) {
 		objectList[i].SetModelMatrix(mat);

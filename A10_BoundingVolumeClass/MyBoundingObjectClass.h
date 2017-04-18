@@ -32,8 +32,10 @@ public:
 	bool CheckSphereCollision(MyBoundingObjectClass* a_other);
 
 	void SetVisibility(bool value); //Sets Visibilty
+	bool GetVisibility(void);
 
-
+	void SetColor(vector3 color);
+	vector3 GetColor(void);
 
 private:
 	bool m_bVisible = true; //turn off/on bounding obj 
@@ -43,6 +45,8 @@ private:
 	matrix4 m_m4ToWorld = IDENTITY_M4; //matrix that takes you from local to global space
 	MeshManagerSingleton* m_pMeshMngr = nullptr; //for drawing the obj
 	float m_fRadius = 0.0f; //radius of the sphere
+
+	vector3 objColor;
 
 	vector3 m_v3Max;
 	vector3 m_v3Min;
