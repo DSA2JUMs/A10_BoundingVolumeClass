@@ -83,6 +83,12 @@ public:
 		}
 	};
 
+	void SetSphereColor(vector3 color) {
+		for (int i = 0; i < objectList.size(); i++) {
+			objectList[i].SetSphereColor(color);
+		}
+	};
+
 	// Loops through the objectList and checks for collisions
 	void CheckCollisions() {
 		for (int i = 0; i < objectList.size(); i++) {

@@ -139,7 +139,7 @@ void MyBoundingObjectClass::SetModelMatrix(matrix4 a_m4ToWorld)
 
 void MyBoundingObjectClass::RenderSphere()
 {
-	vector3 v3Color = GetColor();
+	vector3 v3Color = GetSphereColor();
 	int value = 0; //NONE
 
 	if (GetGeneralVisibility()) {
@@ -163,24 +163,27 @@ void MyBoundingObjectClass::RenderBox()
 		value = 2; //WIRE
 	}
 
-
-
 	if (true == m_bColliding)
 		v3Color = RERED;
 
-	// Personal cube
-	m_pMeshMngr->AddCubeToRenderList(
-		m_m4ToWorld *
-		glm::translate(m_v3CenterLocal) *
-		glm::scale(m_v3Size),
-		v3Color, value);
-	if (GetAABBVisibility())
-	{
+	if (value == 2) {
+		if (!GetAABBVisibility())
+		{
+			value = 0;
+		}
+
+		// Personal cube
+		m_pMeshMngr->AddCubeToRenderList(
+			m_m4ToWorld *
+			glm::translate(m_v3CenterLocal) *
+			glm::scale(m_v3Size),
+			v3Color, value);
+
 		// All-encompassing cube
 		m_pMeshMngr->AddCubeToRenderList(
 			glm::translate(m_v3CenterGlobal) *
 			glm::scale(m_v3SurroundingSize),
-			REBLUE, value);
+			REGREEN, value);
 	}
 }
 
@@ -233,10 +236,12 @@ bool MyBoundingObjectClass::CheckSphereCollision(MyBoundingObjectClass* a_other)
 //properties
 void MyBoundingObjectClass::SetColor(vector3 color) { objColor = color; }
 vector3 MyBoundingObjectClass::GetColor(void) { return objColor; }
+void MyBoundingObjectClass::SetSphereColor(vector3 color) { ObjSphereColor = color; }
+vector3 MyBoundingObjectClass::GetSphereColor(void) { return ObjSphereColor; }
 void MyBoundingObjectClass::SetGeneralVisibility(bool value){ m_bVisible = value;}
 bool MyBoundingObjectClass::GetGeneralVisibility(void) { return m_bVisible; }
-void MyBoundingObjectClass::SetAABBVisibility(bool value) { m_bVisible = value; }
-bool MyBoundingObjectClass::GetAABBVisibility(void) { return m_bVisible; }
+void MyBoundingObjectClass::SetAABBVisibility(bool value) { m_AABBVisible = value; }
+bool MyBoundingObjectClass::GetAABBVisibility(void) { return m_AABBVisible; }
 void MyBoundingObjectClass::SetColliding(bool input) { m_bColliding = input; }
 bool MyBoundingObjectClass::GetColliding(void) { return m_bColliding; }
 void MyBoundingObjectClass::SetCenterLocal(vector3 input) { m_v3CenterLocal = input; }

@@ -37,6 +37,7 @@ void AppClass::InitVariables(void)
 	matrix4 m4Position2 = glm::translate(vector3(2.5, 2.0, 0.0));
 	m_pMeshMngr->SetModelMatrix(m4Position2, "Cow");
 	m_bObjManager->SetColor(REBLUE);
+	m_bObjManager->SetSphereColor(RECYAN);
 }
 
 void AppClass::Update(void)

@@ -40,8 +40,12 @@ public:
 	void SetColor(vector3 color);
 	vector3 GetColor(void);
 
+	void SetSphereColor(vector3 color);
+	vector3 GetSphereColor(void);
+
 private:
 	bool m_bVisible = true; //turn off/on bounding obj 
+	bool m_AABBVisible = true; //turn off/on bounding obj 
 	bool m_bColliding = false;
 	vector3 m_v3CenterLocal = vector3(0.0f); //center  in local space
 	vector3 m_v3CenterGlobal = vector3(0.0f); //center  in global space
@@ -50,6 +54,7 @@ private:
 	float m_fRadius = 0.0f; //radius of the sphere
 
 	vector3 objColor;
+	vector3 ObjSphereColor;
 
 	vector3 m_v3Max;
 	vector3 m_v3Min;
