@@ -31,8 +31,11 @@ public:
 	bool CheckBoxCollision(MyBoundingObjectClass* a_other);
 	bool CheckSphereCollision(MyBoundingObjectClass* a_other);
 
-	void SetVisibility(bool value); //Sets Visibilty
-	bool GetVisibility(void);
+	void SetGeneralVisibility(bool value); //Sets Visibilty
+	bool GetGeneralVisibility(void);
+
+	void SetAABBVisibility(bool value); //Sets Visibilty
+	bool GetAABBVisibility(void);
 
 	void SetColor(vector3 color);
 	vector3 GetColor(void);

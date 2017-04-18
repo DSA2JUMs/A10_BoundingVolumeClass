@@ -131,7 +131,7 @@ void MyBoundingObjectClass::RenderSphere()
 	vector3 v3Color = GetColor();
 	int value = 0; //NONE
 
-	if (GetVisibility()) {
+	if (GetGeneralVisibility()) {
 		value = 2; //WIRE
 	}
 
@@ -148,7 +148,11 @@ void MyBoundingObjectClass::RenderBox()
 	vector3 v3Color = GetColor();
 	int value = 0; //NONE
 
-	if (GetVisibility()) {
+	if (GetGeneralVisibility()) {
+		value = 2; //WIRE
+	}
+
+	if (GetAABBVisibility()) {
 		value = 2; //WIRE
 	}
 
@@ -218,8 +222,10 @@ bool MyBoundingObjectClass::CheckSphereCollision(MyBoundingObjectClass* a_other)
 //properties
 void MyBoundingObjectClass::SetColor(vector3 color) { objColor = color; }
 vector3 MyBoundingObjectClass::GetColor(void) { return objColor; }
-void MyBoundingObjectClass::SetVisibility(bool value){ m_bVisible = value;}
-bool MyBoundingObjectClass::GetVisibility(void) { return m_bVisible; }
+void MyBoundingObjectClass::SetGeneralVisibility(bool value){ m_bVisible = value;}
+bool MyBoundingObjectClass::GetGeneralVisibility(void) { return m_bVisible; }
+void MyBoundingObjectClass::SetAABBVisibility(bool value) { m_bVisible = value; }
+bool MyBoundingObjectClass::GetAABBVisibility(void) { return m_bVisible; }
 void MyBoundingObjectClass::SetColliding(bool input) { m_bColliding = input; }
 void MyBoundingObjectClass::SetCenterLocal(vector3 input) { m_v3CenterLocal = input; }
 void MyBoundingObjectClass::SetCenterGlobal(vector3 input) { m_v3CenterGlobal = input; }

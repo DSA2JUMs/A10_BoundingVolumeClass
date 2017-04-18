@@ -52,9 +52,16 @@ public:
 	};
 
 	//change visibilty of all the objetcs in list
-	void SetVisibility(bool value) {
+	void SetGeneralVisibility(bool value) {
 		for (int i = 0; i < objectList.size(); i++) {
-			objectList[i].SetColliding(value);
+			objectList[i].SetGeneralVisibility(value);
+		}
+	};
+
+	//change visibilty of AABB all the objetcs in list
+	void SetAABBVisibility(bool value) {
+		for (int i = 0; i < objectList.size(); i++) {
+			objectList[i].SetAABBVisibility(value);
 		}
 	};
 
