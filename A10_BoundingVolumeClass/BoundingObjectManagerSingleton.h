@@ -8,10 +8,10 @@ class BoundingObjectManagerSingleton
 	static BoundingObjectManagerSingleton* instance;
 
 	// List of objects the singleton creates and has control over
-	static std::vector<MyBoundingObjectClass> objectList;
+	std::vector<MyBoundingObjectClass> objectList;
 
 	// Basic constructor
-	BoundingObjectManagerSingleton() {
+	BoundingObjectManagerSingleton(void) {
 		objectList = std::vector<MyBoundingObjectClass>();
 	};
 
@@ -71,5 +71,3 @@ public:
 	};
 
 };
-// Necessary for setting the instance as a nullptr to begin with
-BoundingObjectManagerSingleton* BoundingObjectManagerSingleton::instance = nullptr;

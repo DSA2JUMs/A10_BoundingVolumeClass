@@ -1,4 +1,8 @@
 #include "AppClass.h"
+
+// Necessary for setting the instance as a nullptr to begin with
+BoundingObjectManagerSingleton* BoundingObjectManagerSingleton::instance = nullptr;
+
 void AppClass::InitWindow(String a_sWindowName)
 {
 	super::InitWindow("A10_BoundingVolumeClass");
