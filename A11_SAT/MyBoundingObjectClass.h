@@ -45,6 +45,9 @@ public:
 	void SetSphereColor(vector3 color);
 	vector3 GetSphereColor(void);
 
+	vector3 GetMin();
+	vector3 GetMax();
+
 private:
 	bool m_bVisible = true; //turn off/on bounding obj 
 	bool m_AABBVisible = true; //turn off/on bounding obj 
@@ -69,8 +72,5 @@ private:
 	vector3 m_v3MaxSurrounding;
 	vector3 m_v3MinSurrounding;
 	vector3 m_v3SurroundingSize;
-
-	vector3 getMin(MyBoundingObjectClass* a_other);
-	vector3 getMax(MyBoundingObjectClass* a_other);
 };
 
