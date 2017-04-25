@@ -31,6 +31,8 @@ public:
 	bool CheckBoxCollision(MyBoundingObjectClass* a_other);
 	bool CheckSphereCollision(MyBoundingObjectClass* a_other);
 
+	bool SeparatingAxisTest(MyBoundingObjectClass* a_other);
+
 	void SetGeneralVisibility(bool value); //Sets Visibilty
 	bool GetGeneralVisibility(void);
 
@@ -67,5 +69,8 @@ private:
 	vector3 m_v3MaxSurrounding;
 	vector3 m_v3MinSurrounding;
 	vector3 m_v3SurroundingSize;
+
+	vector3 getMin(MyBoundingObjectClass* a_other);
+	vector3 getMax(MyBoundingObjectClass* a_other);
 };
 

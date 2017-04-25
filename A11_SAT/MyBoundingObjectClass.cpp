@@ -233,6 +233,16 @@ bool MyBoundingObjectClass::CheckSphereCollision(MyBoundingObjectClass* a_other)
 	return true;
 }
 
+bool MyBoundingObjectClass::SeparatingAxisTest(MyBoundingObjectClass * a_other)
+{
+	// First take the X axis  ->  REAXISX
+	// Project all points from all shapes onto the axis
+	// If a min / max point from one shape DOES NTO fall between a min / max point of the other shape, exit out of the loop / return true
+
+	
+	return false;
+}
+
 //properties
 void MyBoundingObjectClass::SetColor(vector3 color) { objColor = color; }
 vector3 MyBoundingObjectClass::GetColor(void) { return objColor; }
@@ -251,6 +261,16 @@ vector3 MyBoundingObjectClass::GetCenterGlobal(void) { return m_v3CenterGlobal; 
 void MyBoundingObjectClass::SetRadius(float input) { m_fRadius = input; }
 float MyBoundingObjectClass::GetRadius(void) { return m_fRadius; }
 matrix4 MyBoundingObjectClass::GetModelMatrix(void) { return m_m4ToWorld; }
+
+vector3 MyBoundingObjectClass::getMin(MyBoundingObjectClass * a_other)
+{
+	return vector3();
+}
+vector3 MyBoundingObjectClass::getMax(MyBoundingObjectClass * a_other)
+{
+	if (a_other)
+		return vector3();
+}
 
 MyBoundingObjectClass::~MyBoundingObjectClass()
 {
