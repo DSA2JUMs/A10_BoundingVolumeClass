@@ -192,9 +192,7 @@ bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass * a_other)
 	//check for sphere collision first
 	if (CheckSphereCollision(a_other)) {
 		//then check for box collision
-		if (CheckBoxCollision(a_other)) {
-			return true;
-		}
+		return SeparatingAxisTest(a_other);
 	}
 
 	//else return false for collision

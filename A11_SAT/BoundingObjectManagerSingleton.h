@@ -99,10 +99,8 @@ public:
 				if (i != j) {
 					if (objectList[i].IsColliding(&objectList[j])) {
 
-						if (objectList[i].IsColliding(&objectList[j])) {
-							objectList[i].SetColliding(true);
-							objectList[j].SetColliding(true);
-						}
+						objectList[i].SetColliding(true);
+						objectList[j].SetColliding(true);
 					}
 				}
 			}
