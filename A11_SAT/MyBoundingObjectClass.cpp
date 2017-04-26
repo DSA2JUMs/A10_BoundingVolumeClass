@@ -268,7 +268,7 @@ bool MyBoundingObjectClass::SeparatingAxisTest(MyBoundingObjectClass * a_other)
 	// Compute translation vector t
 	vector3 t = GetCenterGlobal() - a_other->GetCenterGlobal();
 	// Bring translation into a’s coordinate frame
-	t = vector3(glm::dot(t, a_u[0]), glm::dot(t, a_u[2]), glm::dot(t, a_u[2]));
+	t = vector3(glm::dot(t, a_u[0]), glm::dot(t, a_u[1]), glm::dot(t, a_u[2]));
 	// Compute common subexpressions. Add in an epsilon term to
 	// counteract arithmetic errors when two edges are parallel and
 	// their cross product is (near) null (see text for details)
@@ -307,6 +307,7 @@ bool MyBoundingObjectClass::SeparatingAxisTest(MyBoundingObjectClass * a_other)
 	// Test axis L = A1 x B1
 	ra = a_e[0] * AbsR[2][1] + a_e[2] * AbsR[0][1];
 	rb = t_e[0] * AbsR[1][2] + t_e[2] * AbsR[1][0];
+
 	if (glm::abs(t[0] * R[2][1] - t[2] * R[0][1]) > ra + rb) return 0;
 	// Test axis L = A1 x B2
 	ra = a_e[0] * AbsR[2][2] + a_e[2] * AbsR[0][2];
@@ -324,6 +325,7 @@ bool MyBoundingObjectClass::SeparatingAxisTest(MyBoundingObjectClass * a_other)
 	ra = a_e[0] * AbsR[1][2] + a_e[1] * AbsR[0][2];
 	rb = t_e[0] * AbsR[2][1] + t_e[1] * AbsR[2][0];
 	if (glm::abs(t[1] * R[0][2] - t[0] * R[1][2]) > ra + rb) return 0;
+
 	// Since no separating axis is found, the OBBs must be intersecting
 	return 1;
 	return false;
