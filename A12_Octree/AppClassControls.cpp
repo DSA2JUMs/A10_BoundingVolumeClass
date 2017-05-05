@@ -101,6 +101,30 @@ void AppClass::ProcessKeyboard(void)
 		}
 	}
 
+	//turn on/off SO visibilty
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+		if (!bModifier)
+		{
+			//turn off visibility
+			
+		}
+		else {
+			
+		}
+	}
+
+	//turn on/off SO checking
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
+		if (!bModifier)
+		{
+			//turn off checking
+
+		}
+		else {
+
+		}
+	}
+
 #pragma endregion
 
 #pragma region Other Actions

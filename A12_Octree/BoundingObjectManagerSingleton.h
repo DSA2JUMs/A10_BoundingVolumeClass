@@ -1,14 +1,13 @@
 #pragma once
 
 #include "MyBoundingObjectClass.h"
+#include "MyOctree.h"
 
 class BoundingObjectManagerSingleton
 {
 	// The single instance of the BoundingObjectManagerSingleton
 	static BoundingObjectManagerSingleton* instance;
-	public:
-	// List of objects the singleton creates and has control over
-	std::vector<MyBoundingObjectClass> objectList;
+
 private:
 	// Basic constructor
 	BoundingObjectManagerSingleton(void) {
@@ -29,6 +28,10 @@ private:
 	~BoundingObjectManagerSingleton() {};
 
 public:
+	// List of objects the singleton creates and has control over
+	std::vector<MyBoundingObjectClass> objectList;
+	MyOctree octree = MyOctree(-100.0f, 100.0f, -100.0f, 100.0f, -100.0f, 100.0f, 3);
+
 	// Returns the single instance of BoundingObjectManagerSingleton
 	// If one doesn't exist, create an instance
 	static BoundingObjectManagerSingleton* GetInstance() {

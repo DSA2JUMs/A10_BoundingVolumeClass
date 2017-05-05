@@ -38,7 +38,7 @@ void MyOctree::CheckColisions()
 		//checking for lowest level of tree
 		for (int i = 0; i < 8; i++)
 		{
-			children[i].CheckColisions; //recursive 
+			children[i].CheckColisions(); //recursive 
 		}
 	}
 	else
@@ -121,8 +121,23 @@ void MyOctree::AddObject(MyBoundingObjectClass * iobject)
 					}
 				}
 			}
+		}
 	}
 }
+
+void MyOctree::SetSOVisibilty(bool value) { 
+	SOVisibility = value; 
+	if (hasChildren)
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			children[i].SetSOVisibilty(value);
+		}
+	}
+}
+
+bool MyOctree::GetSOVisibilty(){return SOVisibility;}
+
 
 MyOctree::~MyOctree()
 {

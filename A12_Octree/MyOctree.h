@@ -4,9 +4,20 @@
 class MyOctree
 {
 public:
-	int depth;
+	
 	std::vector<MyOctree> children;
 	std::vector<MyBoundingObjectClass*> object;
+
+
+	MyOctree(float iminx, float imaxx, float iminy, float imaxy, float iminz, float imaxz, int idepth);
+	void CheckColisions();
+	void AddObject(MyBoundingObjectClass *iobject);
+
+	void SetSOVisibilty(bool value);
+	bool GetSOVisibilty();
+	~MyOctree();
+
+private:
 	float minX;
 	float maxX;
 	float cx;
@@ -17,10 +28,7 @@ public:
 	float maxZ;
 	float cz;
 	bool hasChildren;
-
-	MyOctree(float iminx, float imaxx, float iminy, float imaxy, float iminz, float imaxz, int idepth);
-	void CheckColisions();
-	void AddObject(MyBoundingObjectClass *iobject);
-	~MyOctree();
+	bool SOVisibility = false;
+	int depth;
 };
 
