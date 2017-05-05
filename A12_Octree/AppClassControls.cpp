@@ -7,7 +7,7 @@ void AppClass::ProcessKeyboard(void)
 #pragma region ON_KEY_PRESS_RELEASE
 	static bool	bLastF1 = false, bLastF2 = false, bLastF3 = false, bLastF4 = false, bLastF5 = false,
 		bLastF6 = false, bLastF7 = false, bLastF8 = false, bLastF9 = false, bLastF10 = false,
-		bLastEscape = false, bLastF = false, bLastS = false, bLastK = false;
+		bLastEscape = false, bLastF = false, bLastH = false, bLastK = false;
 #define ON_KEY_PRESS_RELEASE(key, pressed_action, released_action){  \
 			bool pressed = sf::Keyboard::isKeyPressed(sf::Keyboard::key);			\
 			if(pressed){											\
@@ -107,7 +107,7 @@ void AppClass::ProcessKeyboard(void)
 	static bool bSOCheck = false;
 
 	//turn on/off SO visibilty
-	ON_KEY_PRESS_RELEASE(S, NULL, bSOVis = true);
+	ON_KEY_PRESS_RELEASE(H, NULL, bSOVis = true);
 
 	if (bSOVis) {
 		m_bObjManager->octree.SetSOVisibility(!m_bObjManager->octree.GetSOVisibility());

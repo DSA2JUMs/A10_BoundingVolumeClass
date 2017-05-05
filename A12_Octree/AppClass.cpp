@@ -19,7 +19,7 @@ void AppClass::InitVariables(void)
 		{
 			String sInstance = "Cube_" + std::to_string(i) + "_" + std::to_string(j);
 			matrix4 m4Positions = glm::translate(static_cast<float>(i - nSquare / 2.0f), static_cast<float>(j), 0.0f);
-			m4Positions = glm::translate(vector3(glm::sphericalRand(35.0f)));
+			m4Positions = glm::translate(vector3(glm::sphericalRand(20.0f)));
 			m_pMeshMngr->LoadModel("Portal\\CompanionCube.bto", sInstance, false, m4Positions);
 		}
 	}
@@ -144,10 +144,9 @@ void AppClass::Update(void)
 	//m_pMeshMngr->PrintLine(")");
 
 
-	m_pMeshMngr->PrintLine("'B' AABB Visibility ");
-	m_pMeshMngr->Print("'K' SO Check: ");
+	m_pMeshMngr->Print("<K> SO Check: ");
 	m_pMeshMngr->PrintLine(std::to_string(m_bObjManager->octree.GetSOCheck()));
-	m_pMeshMngr->PrintLine("'S' SO Visibility ");
+	m_pMeshMngr->PrintLine("<H> Display Octree ");
 
 	m_pMeshMngr->Print("FPS:");
 	m_pMeshMngr->Print(std::to_string(nFPS), RERED);

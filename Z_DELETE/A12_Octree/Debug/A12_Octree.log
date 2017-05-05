@@ -1,0 +1,44 @@
+﻿  AppClassControls.cpp
+z:\igmprofile\desktop\assignments\a12_octree\boundingobjectmanagersingleton.h(60): warning C4018: '<': signed/unsigned mismatch
+z:\igmprofile\desktop\assignments\a12_octree\boundingobjectmanagersingleton.h(72): warning C4018: '<': signed/unsigned mismatch
+z:\igmprofile\desktop\assignments\a12_octree\boundingobjectmanagersingleton.h(83): warning C4018: '<': signed/unsigned mismatch
+z:\igmprofile\desktop\assignments\a12_octree\boundingobjectmanagersingleton.h(89): warning C4018: '<': signed/unsigned mismatch
+z:\igmprofile\desktop\assignments\a12_octree\boundingobjectmanagersingleton.h(95): warning C4018: '<': signed/unsigned mismatch
+z:\igmprofile\desktop\assignments\a12_octree\boundingobjectmanagersingleton.h(107): warning C4018: '<': signed/unsigned mismatch
+z:\igmprofile\desktop\assignments\a12_octree\boundingobjectmanagersingleton.h(110): warning C4018: '<': signed/unsigned mismatch
+z:\igmprofile\desktop\assignments\a12_octree\boundingobjectmanagersingleton.h(111): warning C4018: '<': signed/unsigned mismatch
+  A12_Octree.vcxproj -> Z:\IGMProfile\Desktop\Assignments\Z_DELETE\A12_OctreeD.exe
+  A12_Octree.vcxproj -> Z:\IGMProfile\Desktop\Assignments\Z_DELETE\A12_OctreeD.pdb (Full PDB)
+  A subdirectory or file Z:\IGMProfile\Desktop\Assignments\_Binary\ already exists.
+  Z:\IGMProfile\Desktop\Assignments\include\GL\bin\glew32.dll
+  Z:\IGMProfile\Desktop\Assignments\include\GL\bin\glut32.dll
+  2 File(s) copied
+  Z:\IGMProfile\Desktop\Assignments\include\RE\bin\2015\ReEng_VS15.dll
+  Z:\IGMProfile\Desktop\Assignments\include\RE\bin\2015\ReEng_VS15_d.dll
+  2 File(s) copied
+  Z:\IGMProfile\Desktop\Assignments\include\SFML\bin\sfml-system-2.dll
+  1 File(s) copied
+  Z:\IGMProfile\Desktop\Assignments\include\SFML\bin\sfml-window-2.dll
+  1 File(s) copied
+  A subdirectory or file Z:\IGMProfile\Desktop\Assignments\_Binary\Shaders\ already exists.
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\Basic.fs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\Basic.vs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\BasicColor.fs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\BasicColor.vs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\Color.fs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\Color.vs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\PassThrough.fs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\PassThrough.vs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\Phong.fs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\Phong.vs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\REShader.fs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\REShader.vs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\REShaderInv.fs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\REShaderMC.fs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\Skybox.fs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\Skybox.vs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\Test.fs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\Test.vs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\TextShader.fs
+  Z:\IGMProfile\Desktop\Assignments\include\RE\Shaders\TextShader.vs
+  20 File(s) copied
