@@ -19,6 +19,7 @@ class AppClass : public ReEngAppClass
 	MyBoundingObjectClass* m_pBB0;
 	MyBoundingObjectClass* m_pBB1;
 	MyBoundingObjectClass* m_pBB2;
+	uint m_nInstances = 1000;
 public:
 	typedef ReEngAppClass super;
 	/*

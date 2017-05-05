@@ -46,6 +46,9 @@ void MyOctree::CheckColisions()
 	else
 	{
 		//once you get to the lowest level, check for collision
+		for (int i = 0; i < object.size(); i++) {
+			object[i]->SetColliding(false);
+		}
 		for (int i = 0; i < object.size(); i++)
 		{
 			for (int j = 0; j < object.size(); j++)

@@ -10,6 +10,20 @@ void AppClass::InitWindow(String a_sWindowName)
 
 void AppClass::InitVariables(void)
 {
+	m_nInstances = 3500;
+	int nSquare = static_cast<int>(std::sqrt(m_nInstances));
+	m_nInstances = nSquare * nSquare;
+	for (int i = 0; i < nSquare; i++)
+	{
+		for (int j = 0; j < nSquare; j++)
+		{
+			String sInstance = "Cube_" + std::to_string(i) + "_" + std::to_string(j);
+			matrix4 m4Positions = glm::translate(static_cast<float>(i - nSquare / 2.0f), static_cast<float>(j), 0.0f);
+			m4Positions = glm::translate(vector3(glm::sphericalRand(35.0f)));
+			m_pMeshMngr->LoadModel("Portal\\CompanionCube.bto", sInstance, false, m4Positions);
+		}
+	}
+
 	//Set the camera position
 	m_pCameraMngr->SetPositionTargetAndView(
 		vector3(0.0f, 2.5f, 15.0f),//Camera position
