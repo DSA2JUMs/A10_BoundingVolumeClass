@@ -98,23 +98,25 @@ public:
 
 	// Loops through the objectList and checks for collisions
 	void CheckCollisions() {
-		for (int i = 0; i < objectList.size(); i++) {
-			objectList[i].SetColliding(false);
-		}
-		for (int i = 0; i < objectList.size(); i++) {
-			for (int j = i; j < objectList.size(); j++) {
-				if (i != j) {
-					if (objectList[i].IsColliding(&objectList[j])) {
-
-						objectList[i].SetColliding(true);
-						objectList[j].SetColliding(true);
-					}
-				}
-			}
-		}
 
 		if (octree.GetSOCheck()) {
 			octree.CheckColisions();
+		}
+		else {
+			for (int i = 0; i < objectList.size(); i++) {
+				objectList[i].SetColliding(false);
+			}
+			for (int i = 0; i < objectList.size(); i++) {
+				for (int j = i; j < objectList.size(); j++) {
+					if (i != j) {
+						if (objectList[i].IsColliding(&objectList[j])) {
+
+							objectList[i].SetColliding(true);
+							objectList[j].SetColliding(true);
+						}
+					}
+				}
+			}
 		}
 
 	};

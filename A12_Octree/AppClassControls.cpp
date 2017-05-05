@@ -6,8 +6,8 @@ void AppClass::ProcessKeyboard(void)
 
 #pragma region ON_KEY_PRESS_RELEASE
 	static bool	bLastF1 = false, bLastF2 = false, bLastF3 = false, bLastF4 = false, bLastF5 = false,
-				bLastF6 = false, bLastF7 = false, bLastF8 = false, bLastF9 = false, bLastF10 = false,
-				bLastEscape = false, bLastF = false;
+		bLastF6 = false, bLastF7 = false, bLastF8 = false, bLastF9 = false, bLastF10 = false,
+		bLastEscape = false, bLastF = false, bLastS = false, bLastK = false;
 #define ON_KEY_PRESS_RELEASE(key, pressed_action, released_action){  \
 			bool pressed = sf::Keyboard::isKeyPressed(sf::Keyboard::key);			\
 			if(pressed){											\
@@ -101,29 +101,27 @@ void AppClass::ProcessKeyboard(void)
 		}
 	}
 
+	
+
+	static bool bSOVis = false;
+	static bool bSOCheck = false;
+
 	//turn on/off SO visibilty
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		if (!bModifier)
-		{
-			//turn off visibility
-			
-		}
-		else {
-			
-		}
+	ON_KEY_PRESS_RELEASE(S, NULL, bSOVis = true);
+
+	if (bSOVis) {
+		m_bObjManager->octree.SetSOVisibility(!m_bObjManager->octree.GetSOVisibility());
+		bSOVis = false;
 	}
 
 	//turn on/off SO checking
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
-		if (!bModifier)
-		{
-			//turn off checking
+	ON_KEY_PRESS_RELEASE(K, NULL, bSOCheck = true);
 
-		}
-		else {
-
-		}
+	if (bSOCheck) {
+		m_bObjManager->octree.SetSOCheck(!m_bObjManager->octree.GetSOCheck());
+		bSOCheck = false;
 	}
+
 
 #pragma endregion
 

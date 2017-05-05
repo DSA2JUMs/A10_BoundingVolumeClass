@@ -121,13 +121,19 @@ void AppClass::Update(void)
 	m_pMeshMngr->PrintLine("");//Add a line on top
 	m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), REYELLOW);
 
-	m_pMeshMngr->Print("Center: (");
-	m_pMeshMngr->Print(std::to_string(m_bObjManager->objectList[0].GetCenterGlobal().x), RERED);
-	m_pMeshMngr->Print(" , ");
-	m_pMeshMngr->Print(std::to_string(m_bObjManager->objectList[0].GetCenterGlobal().y), RERED);
-	m_pMeshMngr->Print(" , ");
-	m_pMeshMngr->Print(std::to_string(m_bObjManager->objectList[0].GetCenterGlobal().z), RERED);
-	m_pMeshMngr->PrintLine(")");
+	//m_pMeshMngr->Print("Center: (");
+	//m_pMeshMngr->Print(std::to_string(m_bObjManager->objectList[0].GetCenterGlobal().x), RERED);
+	//m_pMeshMngr->Print(" , ");
+	//m_pMeshMngr->Print(std::to_string(m_bObjManager->objectList[0].GetCenterGlobal().y), RERED);
+	//m_pMeshMngr->Print(" , ");
+	//m_pMeshMngr->Print(std::to_string(m_bObjManager->objectList[0].GetCenterGlobal().z), RERED);
+	//m_pMeshMngr->PrintLine(")");
+
+
+	m_pMeshMngr->PrintLine("'B' AABB Visibility ");
+	m_pMeshMngr->Print("'K' SO Check: ");
+	m_pMeshMngr->PrintLine(std::to_string(m_bObjManager->octree.GetSOCheck()));
+	m_pMeshMngr->PrintLine("'S' SO Visibility ");
 
 	m_pMeshMngr->Print("FPS:");
 	m_pMeshMngr->Print(std::to_string(nFPS), RERED);
