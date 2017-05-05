@@ -30,7 +30,7 @@ private:
 public:
 	// List of objects the singleton creates and has control over
 	std::vector<MyBoundingObjectClass> objectList;
-	MyOctree octree = MyOctree(-100.0f, 100.0f, -100.0f, 100.0f, -100.0f, 100.0f, 3);
+	MyOctree octree = MyOctree(-10.0f, 10.0f, -10.0f, 10.0f, -10.0f, 10.0f, 3);
 
 	// Returns the single instance of BoundingObjectManagerSingleton
 	// If one doesn't exist, create an instance
@@ -63,6 +63,7 @@ public:
 		}
 		if (octree.GetSOVisibility()) {
 			// RENDER HERE
+			octree.Render();
 		}
 	}
 

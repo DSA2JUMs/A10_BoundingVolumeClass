@@ -19,6 +19,8 @@ public:
 	void SetSOCheck(bool value);
 	bool GetSOCheck();
 
+	void Render();
+
 	~MyOctree();
 
 private:
@@ -35,5 +37,6 @@ private:
 	bool SOVisibility = false;
 	bool SOCheck = true;
 	int depth;
+	MeshManagerSingleton* m_pMeshMngr = nullptr;
 };
 

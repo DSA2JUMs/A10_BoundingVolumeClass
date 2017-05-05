@@ -2,6 +2,8 @@
 
 MyOctree::MyOctree(float iminx, float imaxx, float iminy, float imaxy, float iminz, float imaxz, int idepth)
 {
+	m_pMeshMngr = MeshManagerSingleton::GetInstance();
+
 	minX = iminx;
 	maxX = imaxx;
 	cx = (minX + maxX) / 2;
@@ -148,6 +150,23 @@ void MyOctree::SetSOCheck(bool value) {
 }
 
 bool MyOctree::GetSOCheck() { return SOCheck; }
+
+void MyOctree::Render()
+{
+	//add box to render list
+	m_pMeshMngr->AddCubeToRenderList(
+		glm::translate(vector3(cx, cy, cz)) *
+		glm::scale(vector3(maxX - minX, maxY - minY, maxZ - minZ)),
+		REPURPLE, WIRE);
+
+	if (hasChildren)
+	{
+		for each (MyOctree child in children)
+		{
+			child.Render();
+		}
+	}
+}
 
 MyOctree::~MyOctree()
 {
