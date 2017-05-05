@@ -71,51 +71,51 @@ void MyOctree::AddObject(MyBoundingObjectClass * iobject)
 	{
 		for (int i = 0; i < 8; i++)
 		{
-			if (children[i].minX <= iobject->GetMin.X &&  iobject->GetMin.X <= children[i].maxX)
+			if (children[i].minX <= iobject->GetMin().x &&  iobject->GetMin().x <= children[i].maxX)
 			{
-				if (children[i].minY <= iobject->GetMin.Y &&  iobject->GetMin.Y <= children[i].maxY)
+				if (children[i].minY <= iobject->GetMin().y &&  iobject->GetMin().y <= children[i].maxY)
 				{
-					if (children[i].minZ <= iobject->GetMin.Z &&  iobject->GetMin.Z <= children[i].maxZ)
+					if (children[i].minZ <= iobject->GetMin().z &&  iobject->GetMin().z <= children[i].maxZ)
 					{
 						children[i].AddObject(iobject);
 					}
-					else if (children[i].minZ <= iobject->GetMax.Z &&  iobject->GetMax.Z <= children[i].maxZ)
+					else if (children[i].minZ <= iobject->GetMax().z &&  iobject->GetMax().z <= children[i].maxZ)
 					{
 						children[i].AddObject(iobject);
 					}
 				}
-				else if (children[i].minY <= iobject->GetMax.Y &&  iobject->GetMax.Y <= children[i].maxY)
+				else if (children[i].minY <= iobject->GetMax().y &&  iobject->GetMax().y <= children[i].maxY)
 				{
-					if (children[i].minZ <= iobject->GetMin.Z &&  iobject->GetMin.Z <= children[i].maxZ)
+					if (children[i].minZ <= iobject->GetMin().z &&  iobject->GetMin().z <= children[i].maxZ)
 					{
 						children[i].AddObject(iobject);
 					}
-					else if (children[i].minZ <= iobject->GetMax.Z &&  iobject->GetMax.Z <= children[i].maxZ)
+					else if (children[i].minZ <= iobject->GetMax().z &&  iobject->GetMax().z <= children[i].maxZ)
 					{
 						children[i].AddObject(iobject);
 					}
 				}
 			}
-			else if (children[i].minX <= iobject->GetMax.X &&  iobject->GetMax.X <= children[i].maxX)
+			else if (children[i].minX <= iobject->GetMax().x &&  iobject->GetMax().x <= children[i].maxX)
 			{
-				if (children[i].minY <= iobject->GetMin.Y &&  iobject->GetMin.Y <= children[i].maxY)
+				if (children[i].minY <= iobject->GetMin().y &&  iobject->GetMin().y <= children[i].maxY)
 				{
-					if (children[i].minZ <= iobject->GetMin.Z &&  iobject->GetMin.Z <= children[i].maxZ)
+					if (children[i].minZ <= iobject->GetMin().z &&  iobject->GetMin().z <= children[i].maxZ)
 					{
 						children[i].AddObject(iobject);
 					}
-					else if (children[i].minZ <= iobject->GetMax.Z &&  iobject->GetMax.Z <= children[i].maxZ)
+					else if (children[i].minZ <= iobject->GetMax().z &&  iobject->GetMax().z <= children[i].maxZ)
 					{
 						children[i].AddObject(iobject);
 					}
 				}
-				else if (children[i].minY <= iobject->GetMax.Y &&  iobject->GetMax.Y <= children[i].maxY)
+				else if (children[i].minY <= iobject->GetMax().y &&  iobject->GetMax().y <= children[i].maxY)
 				{
-					if (children[i].minZ <= iobject->GetMin.Z &&  iobject->GetMin.Z <= children[i].maxZ)
+					if (children[i].minZ <= iobject->GetMin().z &&  iobject->GetMin().z <= children[i].maxZ)
 					{
 						children[i].AddObject(iobject);
 					}
-					else if (children[i].minZ <= iobject->GetMax.Z &&  iobject->GetMax.Z <= children[i].maxZ)
+					else if (children[i].minZ <= iobject->GetMax().z &&  iobject->GetMax().z <= children[i].maxZ)
 					{
 						children[i].AddObject(iobject);
 					}
@@ -125,19 +125,29 @@ void MyOctree::AddObject(MyBoundingObjectClass * iobject)
 	}
 }
 
-void MyOctree::SetSOVisibilty(bool value) { 
+void MyOctree::SetSOVisibility(bool value) { 
 	SOVisibility = value; 
 	if (hasChildren)
 	{
 		for (int i = 0; i < 8; i++)
 		{
-			children[i].SetSOVisibilty(value);
+			children[i].SetSOVisibility(value);
 		}
 	}
 }
 
-bool MyOctree::GetSOVisibilty(){return SOVisibility;}
+bool MyOctree::GetSOVisibility() { return SOVisibility; }
 
+void MyOctree::SetSOCheck(bool value) {
+	SOCheck = value;
+	if (hasChildren) {
+		for (int i = 0; i < 8; i++) {
+			children[i].SetSOCheck(value);
+		}
+	}
+}
+
+bool MyOctree::GetSOCheck() { return SOCheck; }
 
 MyOctree::~MyOctree()
 {

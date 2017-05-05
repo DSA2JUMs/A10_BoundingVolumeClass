@@ -52,6 +52,7 @@ public:
 	// Used to create new Bounding Objects from a list of vertices
 	void CreateBoundingObject(std::vector<vector3> vertexList) {
 		objectList.push_back(MyBoundingObjectClass(vertexList));
+		octree.AddObject(&objectList.back());
 	};
 
 	//render any specific BO or all of them
@@ -59,6 +60,9 @@ public:
 		for (int i = 0; i < objectList.size(); i++) {
 			objectList[i].RenderSphere();
 			objectList[i].RenderBox();
+		}
+		if (octree.GetSOVisibility()) {
+			// RENDER HERE
 		}
 	}
 
@@ -108,6 +112,11 @@ public:
 				}
 			}
 		}
+
+		if (octree.GetSOCheck()) {
+			octree.CheckColisions();
+		}
+
 	};
 
 	//returns the amount of objects in list

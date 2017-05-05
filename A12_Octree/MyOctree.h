@@ -13,8 +13,12 @@ public:
 	void CheckColisions();
 	void AddObject(MyBoundingObjectClass *iobject);
 
-	void SetSOVisibilty(bool value);
-	bool GetSOVisibilty();
+	void SetSOVisibility(bool value);
+	bool GetSOVisibility();
+
+	void SetSOCheck(bool value);
+	bool GetSOCheck();
+
 	~MyOctree();
 
 private:
@@ -29,6 +33,7 @@ private:
 	float cz;
 	bool hasChildren;
 	bool SOVisibility = false;
+	bool SOCheck = true;
 	int depth;
 };
 
