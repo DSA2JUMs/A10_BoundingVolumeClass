@@ -10,19 +10,8 @@ void AppClass::InitWindow(String a_sWindowName)
 
 void AppClass::InitVariables(void)
 {
-	m_nInstances = 3500;
-	int nSquare = static_cast<int>(std::sqrt(m_nInstances));
-	m_nInstances = nSquare * nSquare;
-	for (int i = 0; i < nSquare; i++)
-	{
-		for (int j = 0; j < nSquare; j++)
-		{
-			String sInstance = "Cube_" + std::to_string(i) + "_" + std::to_string(j);
-			matrix4 m4Positions = glm::translate(static_cast<float>(i - nSquare / 2.0f), static_cast<float>(j), 0.0f);
-			m4Positions = glm::translate(vector3(glm::sphericalRand(20.0f)));
-			m_pMeshMngr->LoadModel("Portal\\CompanionCube.bto", sInstance, false, m4Positions);
-		}
-	}
+	// Get the instance of the BoundingObjectManagerSingleton
+	m_bObjManager = BoundingObjectManagerSingleton::GetInstance();
 
 	//Set the camera position
 	m_pCameraMngr->SetPositionTargetAndView(
@@ -33,9 +22,6 @@ void AppClass::InitVariables(void)
 	m_pMeshMngr->LoadModel("Minecraft\\Zombie.obj", "Zombie");
 	m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
 	m_pMeshMngr->LoadModel("Minecraft\\Cow.obj", "Cow");
-
-	// Get the instance of the BoundingObjectManagerSingleton
-	m_bObjManager = BoundingObjectManagerSingleton::GetInstance();
 
 	//creating bounding spheres for both models
 	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Zombie"));
@@ -52,6 +38,23 @@ void AppClass::InitVariables(void)
 	m_pMeshMngr->SetModelMatrix(m4Position2, "Cow");
 	m_bObjManager->SetColor(REBLUE);
 	m_bObjManager->SetSphereColor(RECYAN);
+
+	//add companion cubes in a sphere
+	m_nInstances = 3500;
+	int nSquare = static_cast<int>(std::sqrt(m_nInstances));
+	m_nInstances = nSquare * nSquare;
+	for (int i = 0; i < nSquare; i++)
+	{
+		for (int j = 0; j < nSquare; j++)
+		{
+			String sInstance = "Cube_" + std::to_string(i) + "_" + std::to_string(j);
+			matrix4 m4Positions = glm::translate(static_cast<float>(i - nSquare / 2.0f), static_cast<float>(j), 0.0f);
+			m4Positions = glm::translate(vector3(glm::sphericalRand(20.0f)));
+			m_pMeshMngr->LoadModel("Portal\\CompanionCube.bto", sInstance, false, m4Positions);
+			//THIS LINE CAUSES THE ERROR
+			m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList(sInstance));
+		}
+	}
 }
 
 void AppClass::Update(void)

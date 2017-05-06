@@ -101,9 +101,10 @@ public:
 	void CheckCollisions() {
 
 		if (octree.GetSOCheck()) {
-			octree.CheckColisions();
+			octree.CheckCollisions();
 		}
 		else {
+			//brute force
 			for (int i = 0; i < objectList.size(); i++) {
 				objectList[i].SetColliding(false);
 			}

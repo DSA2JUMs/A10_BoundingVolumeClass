@@ -10,7 +10,7 @@ public:
 
 
 	MyOctree(float iminx, float imaxx, float iminy, float imaxy, float iminz, float imaxz, int idepth);
-	void CheckColisions();
+	void CheckCollisions();
 	void AddObject(MyBoundingObjectClass *iobject);
 
 	void SetSOVisibility(bool value);
