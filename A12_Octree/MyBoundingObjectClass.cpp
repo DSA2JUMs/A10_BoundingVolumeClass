@@ -146,12 +146,14 @@ void MyBoundingObjectClass::RenderSphere()
 		value = 2; //WIRE
 	}
 
-	if (true == m_bColliding)
+	if (true == m_bColliding) {
 		v3Color = RERED;
 
-	m_pMeshMngr->AddSphereToRenderList(
-		glm::translate(m_v3CenterGlobal) *
-		glm::scale(vector3(m_fRadius/2) * 2.0f), v3Color, value);
+
+		m_pMeshMngr->AddSphereToRenderList(
+			glm::translate(m_v3CenterGlobal) *
+			glm::scale(vector3(m_fRadius / 2) * 2.0f), v3Color, value);
+	}
 }
 
 void MyBoundingObjectClass::RenderBox()
@@ -163,27 +165,28 @@ void MyBoundingObjectClass::RenderBox()
 		value = 2; //WIRE
 	}
 
-	if (true == m_bColliding)
+	if (true == m_bColliding) {
 		v3Color = RERED;
 
-	if (value == 2) {
-		if (!GetAABBVisibility())
-		{
-			value = 0;
+		if (value == 2) {
+			if (!GetAABBVisibility())
+			{
+				value = 0;
+			}
+
+			// Personal cube
+			m_pMeshMngr->AddCubeToRenderList(
+				m_m4ToWorld *
+				glm::translate(m_v3CenterLocal) *
+				glm::scale(m_v3Size),
+				v3Color, value);
+
+			// All-encompassing cube
+			m_pMeshMngr->AddCubeToRenderList(
+				glm::translate(m_v3CenterGlobal) *
+				glm::scale(m_v3SurroundingSize),
+				REGREEN, value);
 		}
-
-		// Personal cube
-		m_pMeshMngr->AddCubeToRenderList(
-			m_m4ToWorld *
-			glm::translate(m_v3CenterLocal) *
-			glm::scale(m_v3Size),
-			v3Color, value);
-
-		// All-encompassing cube
-		m_pMeshMngr->AddCubeToRenderList(
-			glm::translate(m_v3CenterGlobal) *
-			glm::scale(m_v3SurroundingSize),
-			REGREEN, value);
 	}
 }
 

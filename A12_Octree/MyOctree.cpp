@@ -1,5 +1,8 @@
 #include "MyOctree.h"
 
+
+//but I do not see any logic on why keep subdividing the active octant in the first place and so -alberto
+
 MyOctree::MyOctree(float iminx, float imaxx, float iminy, float imaxy, float iminz, float imaxz, int idepth)
 {
 	m_pMeshMngr = MeshManagerSingleton::GetInstance();

@@ -26,21 +26,22 @@ void AppClass::InitVariables(void)
 	//creating bounding spheres for both models
 	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Zombie"));
 
-	matrix4 m4Translation = glm::translate(vector3(3.0, 0.0, 0.0));
+	matrix4 m4Translation = glm::translate(vector3(3.0f, 0.0f, 0.0f));
 
 	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Steve"));
 	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Cow"));
 
-	matrix4 m4Position = glm::translate(vector3(3.0, 0.0, 0.0));
+	matrix4 m4Position = glm::translate(vector3(3.0f, 0.0f, 0.0f));
 	m_pMeshMngr->SetModelMatrix(m4Position, "Steve");
 
-	matrix4 m4Position2 = glm::translate(vector3(2.5, 2.0, 0.0));
+	matrix4 m4Position2 = glm::translate(vector3(3.5f, 1.5f, 0.0f));
 	m_pMeshMngr->SetModelMatrix(m4Position2, "Cow");
 	m_bObjManager->SetColor(REBLUE);
 	m_bObjManager->SetSphereColor(RECYAN);
 
 	//add companion cubes in a sphere
-	m_nInstances = 3500;
+	int counter = 3;
+	m_nInstances = 2000;
 	int nSquare = static_cast<int>(std::sqrt(m_nInstances));
 	m_nInstances = nSquare * nSquare;
 	for (int i = 0; i < nSquare; i++)
@@ -52,7 +53,9 @@ void AppClass::InitVariables(void)
 			m4Positions = glm::translate(vector3(glm::sphericalRand(20.0f)));
 			m_pMeshMngr->LoadModel("Portal\\CompanionCube.bto", sInstance, false, m4Positions);
 			//THIS LINE CAUSES THE ERROR
-			m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList(sInstance));
+			m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList(sInstance)); //redners each companion cube
+			m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix(sInstance), counter); //renders each BO 
+			counter++;
 		}
 	}
 }
@@ -96,28 +99,7 @@ void AppClass::Update(void)
 
 	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Cow"), 2);
 	m_bObjManager->RenderBoundingObject();
-	 
-	/*
-	m_pBB0->SetColliding(false);
-	m_pBB1->SetColliding(false);
-	m_pBB2->SetColliding(false);
-
-	if (m_pBB0->IsColliding(m_pBB1))
-	{
-		m_pBB0->SetColliding(true);
-		m_pBB1->SetColliding(true);
-	}
-	if (m_pBB0->IsColliding(m_pBB2))
-	{
-		m_pBB0->SetColliding(true);
-		m_pBB2->SetColliding(true);
-	}
-	if (m_pBB1->IsColliding(m_pBB2))
-	{
-		m_pBB1->SetColliding(true);
-		m_pBB2->SetColliding(true);
-	}
-	*/
+	
 	m_bObjManager->CheckCollisions();
 
 	if (fPercentage > 1.0f)
@@ -129,6 +111,10 @@ void AppClass::Update(void)
 	//Adds all loaded instance to the render list
 	m_pMeshMngr->AddSkyboxToRenderList();
 	m_pMeshMngr->AddInstanceToRenderList("ALL");
+
+	m_pMeshMngr->Print("<K> SO Check: ");
+	m_pMeshMngr->PrintLine(std::to_string(m_bObjManager->octree.GetSOCheck()));
+	m_pMeshMngr->PrintLine("<H> Display Octree ");
 
 	//Indicate the FPS
 	int nFPS = m_pSystem->GetFPS();
@@ -146,13 +132,9 @@ void AppClass::Update(void)
 	//m_pMeshMngr->Print(std::to_string(m_bObjManager->objectList[0].GetCenterGlobal().z), RERED);
 	//m_pMeshMngr->PrintLine(")");
 
-
-	m_pMeshMngr->Print("<K> SO Check: ");
-	m_pMeshMngr->PrintLine(std::to_string(m_bObjManager->octree.GetSOCheck()));
-	m_pMeshMngr->PrintLine("<H> Display Octree ");
-
 	m_pMeshMngr->Print("FPS:");
 	m_pMeshMngr->Print(std::to_string(nFPS), RERED);
+
 }
 
 void AppClass::Display(void)

@@ -58,7 +58,7 @@ public:
 	//render any specific BO or all of them
 	void RenderBoundingObject(){
 		for (int i = 0; i < objectList.size(); i++) {
-			objectList[i].RenderSphere();
+			//objectList[i].RenderSphere();
 			objectList[i].RenderBox();
 		}
 		if (octree.GetSOVisibility()) {
@@ -100,11 +100,12 @@ public:
 	// Loops through the objectList and checks for collisions
 	void CheckCollisions() {
 
-		if (octree.GetSOCheck()) {
+		if (!octree.GetSOCheck()) {
+			//Special Optimization
 			octree.CheckCollisions();
 		}
 		else {
-			//brute force
+			//Brute Source
 			for (int i = 0; i < objectList.size(); i++) {
 				objectList[i].SetColliding(false);
 			}
