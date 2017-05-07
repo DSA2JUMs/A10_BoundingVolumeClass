@@ -6,12 +6,18 @@ class MyOctree
 public:
 	
 	std::vector<MyOctree> children;
-	std::vector<MyBoundingObjectClass*> object;
+	std::vector<MyBoundingObjectClass> object;
 
 
-	MyOctree(float iminx, float imaxx, float iminy, float imaxy, float iminz, float imaxz, int idepth);
+	MyOctree(float iminx, float imaxx, float iminy, float imaxy, float iminz, float imaxz);
+
+	// Divides this cube into 8 smaller cubes.  Moves any game objects that are completely contained within the new smaller cubes into those cubes and removes them from this one.
+	void Divide();
+
 	void CheckCollisions();
-	void AddObject(MyBoundingObjectClass *iobject);
+
+	// Adds a game object to the cube.  If the cube has too many objects in it, and hasn't been divided already, it should be divided.
+	void AddObject(MyBoundingObjectClass iobject);
 
 	void SetSOVisibility(bool value);
 	bool GetSOVisibility();
@@ -38,5 +44,8 @@ private:
 	bool SOCheck = true;
 	int depth;
 	MeshManagerSingleton* m_pMeshMngr = nullptr;
+
+	const static int m_iMAX_OBJECTS = 5;
+
 };
 

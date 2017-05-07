@@ -19,6 +19,7 @@ void AppClass::InitVariables(void)
 		vector3(0.0f, 2.5f, 0.0f),//What Im looking at
 		REAXISY);//What is up
 	//Load a model onto the Mesh manager
+	/*
 	m_pMeshMngr->LoadModel("Minecraft\\Zombie.obj", "Zombie");
 	m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
 	m_pMeshMngr->LoadModel("Minecraft\\Cow.obj", "Cow");
@@ -36,14 +37,16 @@ void AppClass::InitVariables(void)
 
 	matrix4 m4Position2 = glm::translate(vector3(3.5f, 1.5f, 0.0f));
 	m_pMeshMngr->SetModelMatrix(m4Position2, "Cow");
+	*/
 	m_bObjManager->SetColor(REBLUE);
 	m_bObjManager->SetSphereColor(RECYAN);
 
 	//add companion cubes in a sphere
-	int counter = 3;
-	m_nInstances = 2000;
+	int counter = 0;
+	m_nInstances = 200;
 	int nSquare = static_cast<int>(std::sqrt(m_nInstances));
 	m_nInstances = nSquare * nSquare;
+	std::cout << "NSQUARE: " << nSquare << std::endl;
 	for (int i = 0; i < nSquare; i++)
 	{
 		for (int j = 0; j < nSquare; j++)
@@ -53,8 +56,8 @@ void AppClass::InitVariables(void)
 			m4Positions = glm::translate(vector3(glm::sphericalRand(20.0f)));
 			m_pMeshMngr->LoadModel("Portal\\CompanionCube.bto", sInstance, false, m4Positions);
 			//THIS LINE CAUSES THE ERROR
-			m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList(sInstance)); //redners each companion cube
-			m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix(sInstance), counter); //renders each BO 
+			m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList(sInstance)); // renders each companion cube
+			m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix(sInstance), counter); // renders each BO 
 			counter++;
 		}
 	}
@@ -90,14 +93,14 @@ void AppClass::Update(void)
 	matrix4 m4Transform = glm::translate(m_v3Position) * ToMatrix4(m_qArcBall);
 
 
-	m_pMeshMngr->SetModelMatrix(m4Transform, "Zombie"); //set the matrix to the model
+	/*(m_pMeshMngr->SetModelMatrix(m4Transform, "Zombie"); //set the matrix to the model
 	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Zombie"),0);
 		
 	
 	m_pMeshMngr->SetModelMatrix(mTranslation, "Steve");
 	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Steve"), 1);
 
-	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Cow"), 2);
+	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Cow"), 2);*/
 	m_bObjManager->RenderBoundingObject();
 	
 	m_bObjManager->CheckCollisions();
@@ -150,9 +153,9 @@ void AppClass::Display(void)
 
 void AppClass::Release(void)
 {
-	SafeDelete(m_pBB0);
-	SafeDelete(m_pBB1);
-	SafeDelete(m_pBB2);
+	//SafeDelete(m_pBB0);
+	//SafeDelete(m_pBB1);
+	//SafeDelete(m_pBB2);
 
 	super::Release(); //release the memory of the inherited fields
 }

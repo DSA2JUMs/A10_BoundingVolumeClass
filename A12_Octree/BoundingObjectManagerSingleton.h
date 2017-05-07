@@ -30,7 +30,7 @@ private:
 public:
 	// List of objects the singleton creates and has control over
 	std::vector<MyBoundingObjectClass> objectList;
-	MyOctree octree = MyOctree(-40.0f, 40.0f, -40.0f, 40.0f, -40.0f, 40.0f, 3);
+	MyOctree octree = MyOctree(-40.0f, 40.0f, -40.0f, 40.0f, -40.0f, 40.0f);
 
 	// Returns the single instance of BoundingObjectManagerSingleton
 	// If one doesn't exist, create an instance
@@ -52,7 +52,7 @@ public:
 	// Used to create new Bounding Objects from a list of vertices
 	void CreateBoundingObject(std::vector<vector3> vertexList) {
 		objectList.push_back(MyBoundingObjectClass(vertexList));
-		octree.AddObject(&objectList.back());
+		octree.AddObject(objectList.back());
 	};
 
 	//render any specific BO or all of them
