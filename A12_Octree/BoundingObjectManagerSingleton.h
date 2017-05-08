@@ -27,10 +27,12 @@ private:
 	// Basic destructor
 	~BoundingObjectManagerSingleton() {};
 
+	bool m_bIsVisible = false;
+
 public:
 	// List of objects the singleton creates and has control over
 	std::vector<MyBoundingObjectClass> objectList;
-	MyOctree octree = MyOctree(-40.0f, 40.0f, -40.0f, 40.0f, -40.0f, 40.0f);
+	MyOctree octree = MyOctree(-40.0f, 40.0f, -40.0f, 40.0f, -40.0f, 40.0f, 7);
 
 	// Returns the single instance of BoundingObjectManagerSingleton
 	// If one doesn't exist, create an instance
@@ -52,7 +54,6 @@ public:
 	// Used to create new Bounding Objects from a list of vertices
 	void CreateBoundingObject(std::vector<vector3> vertexList) {
 		objectList.push_back(MyBoundingObjectClass(vertexList));
-		octree.AddObject(objectList.back());
 	};
 
 	//render any specific BO or all of them
@@ -76,6 +77,7 @@ public:
 
 	void SetModelMatrix(matrix4 model, int value) {
 		objectList[value].SetModelMatrix(model);
+		octree.AddObject(objectList.back());
 	};
 
 	//change visibilty of AABB all the objetcs in list
@@ -83,6 +85,7 @@ public:
 		for (int i = 0; i < objectList.size(); i++) {
 			objectList[i].SetAABBVisibility(value);
 		}
+		m_bIsVisible = value;
 	};
 
 	void SetColor(vector3 color) {
@@ -100,7 +103,7 @@ public:
 	// Loops through the objectList and checks for collisions
 	void CheckCollisions() {
 
-		if (!octree.GetSOCheck()) {
+		if (octree.GetSOCheck()) {
 			//Special Optimization
 			octree.CheckCollisions();
 		}
@@ -129,6 +132,9 @@ public:
 		return objectList.size();
 	}
 
+	bool GetAABBVisibility() {
+		return m_bIsVisible;
+	}
 
 	void UpdatePositions(matrix4 mat, int i) {
 		objectList[i].SetModelMatrix(mat);

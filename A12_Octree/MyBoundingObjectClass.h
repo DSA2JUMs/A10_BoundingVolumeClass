@@ -7,6 +7,8 @@ public:
 	//has functions and varibles to create sphere and or box collision
 	~MyBoundingObjectClass();
 
+	MyBoundingObjectClass();
+
 	MyBoundingObjectClass(std::vector<vector3> vertexList); //Constructor, needs a vertex list
 
 	void SetCenterLocal(vector3 input); //Sets Center of the sphere in local space

@@ -3,7 +3,7 @@
 
 //but I do not see any logic on why keep subdividing the active octant in the first place and so -alberto
 
-MyOctree::MyOctree(float iminx, float imaxx, float iminy, float imaxy, float iminz, float imaxz)
+MyOctree::MyOctree(float iminx, float imaxx, float iminy, float imaxy, float iminz, float imaxz, int idepth)
 {
 	m_pMeshMngr = MeshManagerSingleton::GetInstance();
 
@@ -19,29 +19,36 @@ MyOctree::MyOctree(float iminx, float imaxx, float iminy, float imaxy, float imi
 
 	hasChildren = false;
 
+	depth = idepth;
+
 	object = {};
+
+	std::vector<vector3> vecList;
+
+	vecList.push_back(vector3(minX, minY, minZ));
+	vecList.push_back(vector3(maxX, maxY, maxZ));
+
+	boundingBox = MyBoundingObjectClass(vecList);
 }
 
 void MyOctree::Divide()
 {
 	// Make new 8 children
-	children.push_back(MyOctree(minX, cx, minY, cy, minZ, cz));
-	children.push_back(MyOctree(cx, maxX, minY, cy, minZ, cz));
-	children.push_back(MyOctree(minX, cx, cy, maxY, minZ, cz));
-	children.push_back(MyOctree(minX, cx, minY, cy, cz, maxZ));
-	children.push_back(MyOctree(cx, maxX, cy, maxY, minZ, cz));
-	children.push_back(MyOctree(minX, cx, cy, maxY, cz, maxZ));
-	children.push_back(MyOctree(cx, maxX, minY, cy, cz, maxZ));
-	children.push_back(MyOctree(cx, maxX, cy, maxY, cz, maxZ));
+	children.push_back(MyOctree(minX, cx, minY, cy, minZ, cz, depth - 1));
+	children.push_back(MyOctree(cx, maxX, minY, cy, minZ, cz, depth - 1));
+	children.push_back(MyOctree(minX, cx, cy, maxY, minZ, cz, depth - 1));
+	children.push_back(MyOctree(minX, cx, minY, cy, cz, maxZ, depth - 1));
+	children.push_back(MyOctree(cx, maxX, cy, maxY, minZ, cz, depth - 1));
+	children.push_back(MyOctree(minX, cx, cy, maxY, cz, maxZ, depth - 1));
+	children.push_back(MyOctree(cx, maxX, minY, cy, cz, maxZ, depth - 1));
+	children.push_back(MyOctree(cx, maxX, cy, maxY, cz, maxZ, depth - 1));
 
 	// It now has children, congratulations you're a father
 	hasChildren = true;
 
 	// Adds the objects to the children - since it now has children it will find the appropriate child and add the object to that child
 	for (int i = 0; i < object.size(); i++) {
-		std::cout << "OBJECT SIZE: (DIVIDE) " << object.size() << std::endl;
 		AddObject(object[i]);
-		std::cout << "OBJECT " << i << std::endl;
 	}
 	// Removes all objects from the parent - this one!
 	object.clear();
@@ -88,9 +95,9 @@ void MyOctree::AddObject(MyBoundingObjectClass iobject)
 	// If this has no children...
 	if (!hasChildren) {
 		// If it exceed the number of objects it can hold, make some chilluns to hold the objects for it
-		if (object.size() > m_iMAX_OBJECTS)
+		if (object.size() > m_iMAX_OBJECTS && depth > 0)
 		{
-			std::cout << "OBJECT SIZE: (ADDOBJECT) " << object.size() << " MAX OBJECTS: " << m_iMAX_OBJECTS << std::endl;
+			//std::cout << "OBJECT SIZE: (ADDOBJECT) " << object.size() << " MAX OBJECTS: " << m_iMAX_OBJECTS << " DEPTH: " << depth << std::endl;
 			Divide();
 		}
 		else {
@@ -102,7 +109,7 @@ void MyOctree::AddObject(MyBoundingObjectClass iobject)
 	// ...else if children exist
 	else
 	{
-		for (int i = 0; i < children.size(); i++)
+		/*for (int i = 0; i < children.size(); i++)
 		{
 			if (children[i].minX <= iobject.GetMin().x &&  iobject.GetMin().x <= children[i].maxX)
 			{
@@ -161,6 +168,11 @@ void MyOctree::AddObject(MyBoundingObjectClass iobject)
 						break;
 					}
 				}
+			}
+		}*/
+		for (int i = 0; i < children.size(); i++) {
+			if (iobject.CheckBoxCollision(&children[i].boundingBox)) {
+				children[i].AddObject(iobject);
 			}
 		}
 	}

@@ -43,10 +43,9 @@ void AppClass::InitVariables(void)
 
 	//add companion cubes in a sphere
 	int counter = 0;
-	m_nInstances = 200;
+	m_nInstances = 500;
 	int nSquare = static_cast<int>(std::sqrt(m_nInstances));
 	m_nInstances = nSquare * nSquare;
-	std::cout << "NSQUARE: " << nSquare << std::endl;
 	for (int i = 0; i < nSquare; i++)
 	{
 		for (int j = 0; j < nSquare; j++)
@@ -57,7 +56,7 @@ void AppClass::InitVariables(void)
 			m_pMeshMngr->LoadModel("Portal\\CompanionCube.bto", sInstance, false, m4Positions);
 			//THIS LINE CAUSES THE ERROR
 			m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList(sInstance)); // renders each companion cube
-			m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix(sInstance), counter); // renders each BO 
+			m_bObjManager->SetModelMatrix(m4Positions, counter); // renders each BO 
 			counter++;
 		}
 	}
@@ -118,6 +117,7 @@ void AppClass::Update(void)
 	m_pMeshMngr->Print("<K> SO Check: ");
 	m_pMeshMngr->PrintLine(std::to_string(m_bObjManager->octree.GetSOCheck()));
 	m_pMeshMngr->PrintLine("<H> Display Octree ");
+	m_pMeshMngr->PrintLine("<B> Display BO ");
 
 	//Indicate the FPS
 	int nFPS = m_pSystem->GetFPS();

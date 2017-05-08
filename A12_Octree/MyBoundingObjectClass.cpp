@@ -363,3 +363,7 @@ vector3 MyBoundingObjectClass::GetMax()
 MyBoundingObjectClass::~MyBoundingObjectClass()
 {
 }
+
+MyBoundingObjectClass::MyBoundingObjectClass()
+{
+}

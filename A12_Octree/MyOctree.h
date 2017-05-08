@@ -9,7 +9,7 @@ public:
 	std::vector<MyBoundingObjectClass> object;
 
 
-	MyOctree(float iminx, float imaxx, float iminy, float imaxy, float iminz, float imaxz);
+	MyOctree(float iminx, float imaxx, float iminy, float imaxy, float iminz, float imaxz, int idepth);
 
 	// Divides this cube into 8 smaller cubes.  Moves any game objects that are completely contained within the new smaller cubes into those cubes and removes them from this one.
 	void Divide();
@@ -45,7 +45,8 @@ private:
 	int depth;
 	MeshManagerSingleton* m_pMeshMngr = nullptr;
 
+	MyBoundingObjectClass boundingBox;
+
 	const static int m_iMAX_OBJECTS = 5;
 
 };
-

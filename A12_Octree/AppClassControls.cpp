@@ -7,7 +7,7 @@ void AppClass::ProcessKeyboard(void)
 #pragma region ON_KEY_PRESS_RELEASE
 	static bool	bLastF1 = false, bLastF2 = false, bLastF3 = false, bLastF4 = false, bLastF5 = false,
 		bLastF6 = false, bLastF7 = false, bLastF8 = false, bLastF9 = false, bLastF10 = false,
-		bLastEscape = false, bLastF = false, bLastH = false, bLastK = false;
+		bLastEscape = false, bLastF = false, bLastH = false, bLastB = false, bLastK = false;
 #define ON_KEY_PRESS_RELEASE(key, pressed_action, released_action){  \
 			bool pressed = sf::Keyboard::isKeyPressed(sf::Keyboard::key);			\
 			if(pressed){											\
@@ -90,21 +90,11 @@ void AppClass::ProcessKeyboard(void)
 		}
 	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) {
-		if (!bModifier)
-		{
-			//turn on and off visibility
-			m_bObjManager->SetAABBVisibility(false);
-		}
-		else {
-			m_bObjManager->SetAABBVisibility(true);
-		}
-	}
-
 	
 
 	static bool bSOVis = false;
 	static bool bSOCheck = false;
+	static bool bBOVis = false;
 
 	//turn on/off SO visibilty
 	ON_KEY_PRESS_RELEASE(H, NULL, bSOVis = true);
@@ -122,6 +112,12 @@ void AppClass::ProcessKeyboard(void)
 		bSOCheck = false;
 	}
 
+	ON_KEY_PRESS_RELEASE(B, NULL, bBOVis = true);
+
+	if (bBOVis) {
+		m_bObjManager->SetAABBVisibility(!m_bObjManager->GetAABBVisibility());
+		bBOVis = false;
+	}
 
 #pragma endregion
 
