@@ -109,67 +109,6 @@ void MyOctree::AddObject(MyBoundingObjectClass iobject)
 	// ...else if children exist
 	else
 	{
-		/*for (int i = 0; i < children.size(); i++)
-		{
-			if (children[i].minX <= iobject.GetMin().x &&  iobject.GetMin().x <= children[i].maxX)
-			{
-				if (children[i].minY <= iobject.GetMin().y &&  iobject.GetMin().y <= children[i].maxY)
-				{
-					if (children[i].minZ <= iobject.GetMin().z &&  iobject.GetMin().z <= children[i].maxZ)
-					{
-						children[i].AddObject(iobject);
-						break;
-					}
-					else if (children[i].minZ <= iobject.GetMax().z &&  iobject.GetMax().z <= children[i].maxZ)
-					{
-						children[i].AddObject(iobject);
-						break;
-					}
-				}
-				else if (children[i].minY <= iobject.GetMax().y &&  iobject.GetMax().y <= children[i].maxY)
-				{
-					if (children[i].minZ <= iobject.GetMin().z &&  iobject.GetMin().z <= children[i].maxZ)
-					{
-						children[i].AddObject(iobject);
-						break;
-					}
-					else if (children[i].minZ <= iobject.GetMax().z &&  iobject.GetMax().z <= children[i].maxZ)
-					{
-						children[i].AddObject(iobject);
-						break;
-					}
-				}
-			}
-			else if (children[i].minX <= iobject.GetMax().x &&  iobject.GetMax().x <= children[i].maxX)
-			{
-				if (children[i].minY <= iobject.GetMin().y &&  iobject.GetMin().y <= children[i].maxY)
-				{
-					if (children[i].minZ <= iobject.GetMin().z &&  iobject.GetMin().z <= children[i].maxZ)
-					{
-						children[i].AddObject(iobject);
-						break;
-					}
-					else if (children[i].minZ <= iobject.GetMax().z &&  iobject.GetMax().z <= children[i].maxZ)
-					{
-						children[i].AddObject(iobject);
-						break;
-					}
-				}
-				else if (children[i].minY <= iobject.GetMax().y &&  iobject.GetMax().y <= children[i].maxY)
-				{
-					if (children[i].minZ <= iobject.GetMin().z &&  iobject.GetMin().z <= children[i].maxZ)
-					{
-						children[i].AddObject(iobject);
-						break;
-					}
-					else if (children[i].minZ <= iobject.GetMax().z &&  iobject.GetMax().z <= children[i].maxZ)
-					{
-						children[i].AddObject(iobject);
-						break;
-					}
-				}
-			}
-		}*/
 		for (int i = 0; i < children.size(); i++) {
 			if (iobject.CheckBoxCollision(&children[i].boundingBox)) {
 				children[i].AddObject(iobject);

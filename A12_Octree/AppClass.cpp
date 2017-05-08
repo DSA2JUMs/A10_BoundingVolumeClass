@@ -43,7 +43,7 @@ void AppClass::InitVariables(void)
 
 	//add companion cubes in a sphere
 	int counter = 0;
-	m_nInstances = 500;
+	m_nInstances = 3000;
 	int nSquare = static_cast<int>(std::sqrt(m_nInstances));
 	m_nInstances = nSquare * nSquare;
 	for (int i = 0; i < nSquare; i++)
@@ -115,7 +115,10 @@ void AppClass::Update(void)
 	m_pMeshMngr->AddInstanceToRenderList("ALL");
 
 	m_pMeshMngr->Print("<K> SO Check: ");
-	m_pMeshMngr->PrintLine(std::to_string(m_bObjManager->octree.GetSOCheck()));
+	if(m_bObjManager->octree.GetSOCheck())
+		m_pMeshMngr->PrintLine("true");
+	else
+		m_pMeshMngr->PrintLine("false");
 	m_pMeshMngr->PrintLine("<H> Display Octree ");
 	m_pMeshMngr->PrintLine("<B> Display BO ");
 
