@@ -103,6 +103,14 @@ public:
 		}
 	};
 
+	void UpdateOctree() {
+		octree = MyOctree(-40.0f, 40.0f, -40.0f, 40.0f, -40.0f, 40.0f, 7);
+
+		for (int i = 0; i < objectList.size(); i++) {
+			octree.AddObject(objectList[i]);
+		}
+	}
+
 	// Loops through the objectList and checks for collisions
 	//switches between SO and Brute Force
 	void CheckCollisions() {

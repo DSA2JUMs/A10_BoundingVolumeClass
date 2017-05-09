@@ -7,7 +7,7 @@ void AppClass::ProcessKeyboard(void)
 #pragma region ON_KEY_PRESS_RELEASE
 	static bool	bLastF1 = false, bLastF2 = false, bLastF3 = false, bLastF4 = false, bLastF5 = false,
 		bLastF6 = false, bLastF7 = false, bLastF8 = false, bLastF9 = false, bLastF10 = false,
-		bLastEscape = false, bLastF = false, bLastH = false, bLastB = false, bLastK = false;
+		bLastEscape = false, bLastF = false, bLastH = false, bLastB = false, bLastK = false, bLastR = false;
 #define ON_KEY_PRESS_RELEASE(key, pressed_action, released_action){  \
 			bool pressed = sf::Keyboard::isKeyPressed(sf::Keyboard::key);			\
 			if(pressed){											\
@@ -91,7 +91,7 @@ void AppClass::ProcessKeyboard(void)
 	}
 
 	
-
+	static bool bRefreshOct = false;
 	static bool bTreeVis = false;
 	static bool bSOCheck = false;
 	static bool bBOVis = false;
@@ -117,6 +117,17 @@ void AppClass::ProcessKeyboard(void)
 	if (bBOVis) {
 		m_bObjManager->SetAABBVisibility(!m_bObjManager->GetAABBVisibility());
 		bBOVis = false;
+	}
+
+	ON_KEY_PRESS_RELEASE(R, NULL, bRefreshOct = true);
+
+	if (bRefreshOct) {
+		bool vis = m_bObjManager->octree.GetOctreeVis();
+		m_bObjManager->UpdateOctree();
+
+		m_bObjManager->octree.SetOctreeVis(vis);
+
+		bRefreshOct = false;
 	}
 
 #pragma endregion

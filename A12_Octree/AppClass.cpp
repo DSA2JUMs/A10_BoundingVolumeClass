@@ -30,7 +30,7 @@ void AppClass::InitVariables(void)
 
 	m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
 	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Steve"));
-	m_pMeshMngr->SetModelMatrix(m4Position, "Steve");
+	//m_pMeshMngr->SetModelMatrix(m4Position, "Steve");
 	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Steve"), 1);
 
 	matrix4 m4Position2 = glm::translate(vector3(3.5f, 1.5f, 0.0f));

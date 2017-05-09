@@ -17,7 +17,7 @@ public:
 	void CheckCollisions();
 
 	// Adds a game object to the cube.  If the cube has too many objects in it, and hasn't been divided already, it should be divided.
-	void AddObject(MyBoundingObjectClass iobject);
+	void AddObject(MyBoundingObjectClass& iobject);
 
 	void SetOctreeVis(bool value);
 	bool GetOctreeVis();

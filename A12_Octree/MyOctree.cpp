@@ -90,7 +90,7 @@ void MyOctree::CheckCollisions()
 	}
 }
 
-void MyOctree::AddObject(MyBoundingObjectClass iobject)
+void MyOctree::AddObject(MyBoundingObjectClass& iobject)
 {
 	// If this has no children...
 	if (!hasChildren) {
