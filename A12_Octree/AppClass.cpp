@@ -19,8 +19,32 @@ void AppClass::InitVariables(void)
 		vector3(0.0f, 2.5f, 0.0f),//What Im looking at
 		REAXISY);//What is up
 
+	//Load a model onto the Mesh manager
+
+	//creating bounding spheres for both models
+	m_pMeshMngr->LoadModel("Minecraft\\Zombie.obj", "Zombie");
+	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Zombie"));
+	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Zombie"), 0);
+
+	matrix4 m4Position = glm::translate(vector3(3.0f, 0.0f, 0.0f));
+
+	m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
+	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Steve"));
+	m_pMeshMngr->SetModelMatrix(m4Position, "Steve");
+	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Steve"), 1);
+
+	matrix4 m4Position2 = glm::translate(vector3(3.5f, 1.5f, 0.0f));
+
+	m_pMeshMngr->LoadModel("Minecraft\\Cow.obj", "Cow");
+	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Cow"));
+	m_pMeshMngr->SetModelMatrix(m4Position2, "Cow");
+	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Cow"), 2);
+
+	//m_bObjManager->SetColor(REBLUE);
+	//m_bObjManager->SetSphereColor(RECYAN);
+
 	//add companion cubes in a sphere
-	int counter = 0;
+	int counter = 3;
 	m_nInstances = 200;
 	int nSquare = static_cast<int>(std::sqrt(m_nInstances));
 	m_nInstances = nSquare * nSquare;
@@ -32,36 +56,11 @@ void AppClass::InitVariables(void)
 			matrix4 m4Positions = glm::translate(static_cast<float>(i - nSquare / 2.0f), static_cast<float>(j), 0.0f);
 			m4Positions = glm::translate(vector3(glm::sphericalRand(20.0f)));
 			m_pMeshMngr->LoadModel("Portal\\CompanionCube.bto", sInstance, false, m4Positions);
-			//THIS LINE CAUSES THE ERROR
 			m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList(sInstance)); // renders each companion cube
 			m_bObjManager->SetModelMatrix(m4Positions, counter); // renders each BO 
 			counter++;
 		}
 	}
-
-	//Load a model onto the Mesh manager
-	
-	m_pMeshMngr->LoadModel("Minecraft\\Zombie.obj", "Zombie");
-	//m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
-	//m_pMeshMngr->LoadModel("Minecraft\\Cow.obj", "Cow");
-
-	//creating bounding spheres for both models
-	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Zombie"));
-	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Zombie"), 0);
-
-	//matrix4 m4Translation = glm::translate(vector3(3.0f, 0.0f, 0.0f));
-
-	//m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Steve"));
-	//m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Cow"));
-
-	//matrix4 m4Position = glm::translate(vector3(3.0f, 0.0f, 0.0f));
-	//m_pMeshMngr->SetModelMatrix(m4Position, "Steve");
-
-	//matrix4 m4Position2 = glm::translate(vector3(3.5f, 1.5f, 0.0f));
-	//m_pMeshMngr->SetModelMatrix(m4Position2, "Cow");
-
-	//m_bObjManager->SetColor(REBLUE);
-	//m_bObjManager->SetSphereColor(RECYAN);
 }
 
 void AppClass::Update(void)
@@ -85,7 +84,7 @@ void AppClass::Update(void)
 	float fDeltaTime = static_cast<float>(m_pSystem->LapClock(nClock));
 	fTimer += fDeltaTime;
 	static vector3 v3Start = vector3(3.0, 0.0, 0.0);
-	static vector3 v3End = vector3(5.0, 0.0, 0.0);
+	static vector3 v3End = vector3(10.0, 0.0, 0.0);
 	float fPercentage = MapValue(fTimer, 0.0f, 3.0f, 0.0f, 1.0f);
 	vector3 v3Current = glm::lerp(v3Start, v3End, fPercentage);
 	matrix4 mTranslation = glm::translate(v3Current);
@@ -94,11 +93,8 @@ void AppClass::Update(void)
 	matrix4 m4Transform = glm::translate(m_v3Position) * ToMatrix4(m_qArcBall);
 	m_pMeshMngr->SetModelMatrix(m4Transform, "Zombie"); //set the matrix to the model
 		
-	
-	/*m_pMeshMngr->SetModelMatrix(mTranslation, "Steve");
-	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Steve"), 1);
+	m_pMeshMngr->SetModelMatrix(mTranslation, "Steve");
 
-	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Cow"), 2);*/
 	m_bObjManager->RenderBoundingObject();
 	m_bObjManager->RenderOctree();
 	
@@ -126,10 +122,6 @@ void AppClass::Update(void)
 
 	//Indicate the FPS
 	int nFPS = m_pSystem->GetFPS();
-	//print info into the console
-	//printf("FPS: %d            \r", nFPS);//print the Frames per Second
-	//Print info on the screen
-
 
 	//m_pMeshMngr->Print("Center: (");
 	//m_pMeshMngr->Print(std::to_string(m_bObjManager->objectList[0].GetCenterGlobal().x), RERED);
@@ -141,7 +133,6 @@ void AppClass::Update(void)
 
 	m_pMeshMngr->Print("FPS:");
 	m_pMeshMngr->Print(std::to_string(nFPS), RERED);
-
 }
 
 void AppClass::Display(void)
@@ -157,9 +148,5 @@ void AppClass::Display(void)
 
 void AppClass::Release(void)
 {
-	//SafeDelete(m_pBB0);
-	//SafeDelete(m_pBB1);
-	//SafeDelete(m_pBB2);
-
 	super::Release(); //release the memory of the inherited fields
 }
