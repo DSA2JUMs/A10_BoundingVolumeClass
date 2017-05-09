@@ -18,32 +18,10 @@ void AppClass::InitVariables(void)
 		vector3(0.0f, 2.5f, 15.0f),//Camera position
 		vector3(0.0f, 2.5f, 0.0f),//What Im looking at
 		REAXISY);//What is up
-	//Load a model onto the Mesh manager
-	/*
-	m_pMeshMngr->LoadModel("Minecraft\\Zombie.obj", "Zombie");
-	m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
-	m_pMeshMngr->LoadModel("Minecraft\\Cow.obj", "Cow");
-
-	//creating bounding spheres for both models
-	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Zombie"));
-
-	matrix4 m4Translation = glm::translate(vector3(3.0f, 0.0f, 0.0f));
-
-	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Steve"));
-	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Cow"));
-
-	matrix4 m4Position = glm::translate(vector3(3.0f, 0.0f, 0.0f));
-	m_pMeshMngr->SetModelMatrix(m4Position, "Steve");
-
-	matrix4 m4Position2 = glm::translate(vector3(3.5f, 1.5f, 0.0f));
-	m_pMeshMngr->SetModelMatrix(m4Position2, "Cow");
-	*/
-	m_bObjManager->SetColor(REBLUE);
-	m_bObjManager->SetSphereColor(RECYAN);
 
 	//add companion cubes in a sphere
 	int counter = 0;
-	m_nInstances = 3000;
+	m_nInstances = 200;
 	int nSquare = static_cast<int>(std::sqrt(m_nInstances));
 	m_nInstances = nSquare * nSquare;
 	for (int i = 0; i < nSquare; i++)
@@ -60,6 +38,30 @@ void AppClass::InitVariables(void)
 			counter++;
 		}
 	}
+
+	//Load a model onto the Mesh manager
+	
+	m_pMeshMngr->LoadModel("Minecraft\\Zombie.obj", "Zombie");
+	//m_pMeshMngr->LoadModel("Minecraft\\Steve.obj", "Steve");
+	//m_pMeshMngr->LoadModel("Minecraft\\Cow.obj", "Cow");
+
+	//creating bounding spheres for both models
+	m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Zombie"));
+	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Zombie"), 0);
+
+	//matrix4 m4Translation = glm::translate(vector3(3.0f, 0.0f, 0.0f));
+
+	//m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Steve"));
+	//m_bObjManager->CreateBoundingObject(m_pMeshMngr->GetVertexList("Cow"));
+
+	//matrix4 m4Position = glm::translate(vector3(3.0f, 0.0f, 0.0f));
+	//m_pMeshMngr->SetModelMatrix(m4Position, "Steve");
+
+	//matrix4 m4Position2 = glm::translate(vector3(3.5f, 1.5f, 0.0f));
+	//m_pMeshMngr->SetModelMatrix(m4Position2, "Cow");
+
+	//m_bObjManager->SetColor(REBLUE);
+	//m_bObjManager->SetSphereColor(RECYAN);
 }
 
 void AppClass::Update(void)
@@ -90,17 +92,15 @@ void AppClass::Update(void)
 
 	//set the translate to create the transform matrix
 	matrix4 m4Transform = glm::translate(m_v3Position) * ToMatrix4(m_qArcBall);
-
-
-	/*(m_pMeshMngr->SetModelMatrix(m4Transform, "Zombie"); //set the matrix to the model
-	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Zombie"),0);
+	m_pMeshMngr->SetModelMatrix(m4Transform, "Zombie"); //set the matrix to the model
 		
 	
-	m_pMeshMngr->SetModelMatrix(mTranslation, "Steve");
+	/*m_pMeshMngr->SetModelMatrix(mTranslation, "Steve");
 	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Steve"), 1);
 
 	m_bObjManager->SetModelMatrix(m_pMeshMngr->GetModelMatrix("Cow"), 2);*/
 	m_bObjManager->RenderBoundingObject();
+	m_bObjManager->RenderOctree();
 	
 	m_bObjManager->CheckCollisions();
 
@@ -114,6 +114,8 @@ void AppClass::Update(void)
 	m_pMeshMngr->AddSkyboxToRenderList();
 	m_pMeshMngr->AddInstanceToRenderList("ALL");
 
+	m_pMeshMngr->PrintLine("");//Add a line on top
+	m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), REYELLOW);
 	m_pMeshMngr->Print("<K> SO Check: ");
 	if(m_bObjManager->octree.GetSOCheck())
 		m_pMeshMngr->PrintLine("true");
@@ -127,8 +129,7 @@ void AppClass::Update(void)
 	//print info into the console
 	//printf("FPS: %d            \r", nFPS);//print the Frames per Second
 	//Print info on the screen
-	m_pMeshMngr->PrintLine("");//Add a line on top
-	m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), REYELLOW);
+
 
 	//m_pMeshMngr->Print("Center: (");
 	//m_pMeshMngr->Print(std::to_string(m_bObjManager->objectList[0].GetCenterGlobal().x), RERED);

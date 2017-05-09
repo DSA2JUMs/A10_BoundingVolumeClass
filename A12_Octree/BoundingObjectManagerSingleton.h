@@ -62,8 +62,11 @@ public:
 			//objectList[i].RenderSphere();
 			objectList[i].RenderBox();
 		}
-		if (octree.GetSOVisibility()) {
-			// RENDER HERE
+	}
+
+	//render the octree
+	void RenderOctree() {
+		if (octree.GetOctreeVis()) {
 			octree.Render();
 		}
 	}
@@ -101,6 +104,7 @@ public:
 	};
 
 	// Loops through the objectList and checks for collisions
+	//switches between SO and Brute Force
 	void CheckCollisions() {
 
 		if (octree.GetSOCheck()) {

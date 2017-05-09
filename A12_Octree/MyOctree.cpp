@@ -117,18 +117,18 @@ void MyOctree::AddObject(MyBoundingObjectClass iobject)
 	}
 }
 
-void MyOctree::SetSOVisibility(bool value) { 
-	SOVisibility = value; 
+void MyOctree::SetOctreeVis(bool value) { 
+	octreeVis = value;
 	if (hasChildren)
 	{
 		for (int i = 0; i < 8; i++)
 		{
-			children[i].SetSOVisibility(value);
+			children[i].SetOctreeVis(value);
 		}
 	}
 }
 
-bool MyOctree::GetSOVisibility() { return SOVisibility; }
+bool MyOctree::GetOctreeVis() { return octreeVis; }
 
 void MyOctree::SetSOCheck(bool value) {
 	SOCheck = value;

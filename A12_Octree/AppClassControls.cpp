@@ -92,16 +92,16 @@ void AppClass::ProcessKeyboard(void)
 
 	
 
-	static bool bSOVis = false;
+	static bool bTreeVis = false;
 	static bool bSOCheck = false;
 	static bool bBOVis = false;
 
 	//turn on/off SO visibilty
-	ON_KEY_PRESS_RELEASE(H, NULL, bSOVis = true);
+	ON_KEY_PRESS_RELEASE(H, NULL, bTreeVis = true);
 
-	if (bSOVis) {
-		m_bObjManager->octree.SetSOVisibility(!m_bObjManager->octree.GetSOVisibility());
-		bSOVis = false;
+	if (bTreeVis) {
+		m_bObjManager->octree.SetOctreeVis(!m_bObjManager->octree.GetOctreeVis());
+		bTreeVis = false;
 	}
 
 	//turn on/off SO checking

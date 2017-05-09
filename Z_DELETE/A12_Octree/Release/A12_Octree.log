@@ -1,0 +1,50 @@
+﻿  AppClass.cpp
+c:\users\megan smith\desktop\assignments\a12_octree\BoundingObjectManagerSingleton.h(61): warning C4018: '<': signed/unsigned mismatch
+c:\users\megan smith\desktop\assignments\a12_octree\BoundingObjectManagerSingleton.h(73): warning C4018: '<': signed/unsigned mismatch
+c:\users\megan smith\desktop\assignments\a12_octree\BoundingObjectManagerSingleton.h(85): warning C4018: '<': signed/unsigned mismatch
+c:\users\megan smith\desktop\assignments\a12_octree\BoundingObjectManagerSingleton.h(92): warning C4018: '<': signed/unsigned mismatch
+c:\users\megan smith\desktop\assignments\a12_octree\BoundingObjectManagerSingleton.h(98): warning C4018: '<': signed/unsigned mismatch
+c:\users\megan smith\desktop\assignments\a12_octree\BoundingObjectManagerSingleton.h(112): warning C4018: '<': signed/unsigned mismatch
+c:\users\megan smith\desktop\assignments\a12_octree\BoundingObjectManagerSingleton.h(115): warning C4018: '<': signed/unsigned mismatch
+c:\users\megan smith\desktop\assignments\a12_octree\BoundingObjectManagerSingleton.h(116): warning C4018: '<': signed/unsigned mismatch
+  Generating code
+  8 of 1009 functions ( 0.8%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    33 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  A12_Octree.vcxproj -> C:\Users\Megan Smith\Desktop\Assignments\Z_DELETE\A12_Octree.exe
+  A12_Octree.vcxproj -> C:\Users\Megan Smith\Desktop\Assignments\Z_DELETE\A12_Octree.pdb (Full PDB)
+  A subdirectory or file C:\Users\Megan Smith\Desktop\Assignments\_Binary\ already exists.
+          1 file(s) copied.
+  C:\Users\Megan Smith\Desktop\Assignments\include\GL\bin\glew32.dll
+  C:\Users\Megan Smith\Desktop\Assignments\include\GL\bin\glut32.dll
+  2 File(s) copied
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\bin\2015\ReEng_VS15.dll
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\bin\2015\ReEng_VS15_d.dll
+  2 File(s) copied
+  C:\Users\Megan Smith\Desktop\Assignments\include\SFML\bin\sfml-system-2.dll
+  1 File(s) copied
+  C:\Users\Megan Smith\Desktop\Assignments\include\SFML\bin\sfml-window-2.dll
+  1 File(s) copied
+  A subdirectory or file C:\Users\Megan Smith\Desktop\Assignments\_Binary\Shaders\ already exists.
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\Basic.fs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\Basic.vs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\BasicColor.fs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\BasicColor.vs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\Color.fs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\Color.vs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\PassThrough.fs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\PassThrough.vs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\Phong.fs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\Phong.vs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\REShader.fs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\REShader.vs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\REShaderInv.fs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\REShaderMC.fs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\Skybox.fs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\Skybox.vs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\Test.fs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\Test.vs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\TextShader.fs
+  C:\Users\Megan Smith\Desktop\Assignments\include\RE\Shaders\TextShader.vs
+  20 File(s) copied

@@ -19,8 +19,8 @@ public:
 	// Adds a game object to the cube.  If the cube has too many objects in it, and hasn't been divided already, it should be divided.
 	void AddObject(MyBoundingObjectClass iobject);
 
-	void SetSOVisibility(bool value);
-	bool GetSOVisibility();
+	void SetOctreeVis(bool value);
+	bool GetOctreeVis();
 
 	void SetSOCheck(bool value);
 	bool GetSOCheck();
@@ -40,7 +40,7 @@ private:
 	float maxZ;
 	float cz;
 	bool hasChildren;
-	bool SOVisibility = false;
+	bool octreeVis = false;
 	bool SOCheck = true;
 	int depth;
 	MeshManagerSingleton* m_pMeshMngr = nullptr;
